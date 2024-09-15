@@ -1,0 +1,97 @@
+{% include '../header.html'%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/aappg/valeurs.css'%}">
+
+  <section id="valeurs">
+    <div class="container">
+      <div class="content">
+        <h2 class="heading">NOS VALEURS À L’AUTO-ASSUMATION POUR LA PAIX EN GUINÉE</h2>
+        <h3 class="subheading">Important pour tout(e) citoyen(ne) épris de paix et de justice</h3>
+        <p class="description">
+          Dans un pays où les droits fondamentaux des citoyens sont bafoués, où leurs dignités et
+          intégrités sont confisquées, nous, membres de l’organisation, décidons de nous lever
+          contre toute injustice commise contre n’importe quel être humain. Nous croyons aux
+          valeurs et principes universels : « tous les humains naissent libres et égaux ». Partant
+          de ce principe sacrosaint, nous nous lèverons et combattrons toute sorte d’injustice vis-
+          à-vis des peuples. Nous tenons pour évidence qu’aucune nation sur terre, petite ou
+          grande, n’a le monopole du savoir-faire et du savoir-être.
+          Nous croyons au sens de l’honneur que nous avons hérité de nos ancêtres. Nous
+          croyons que la diversité culturelle et cultuelle de notre pays constitue une véritable
+          richesse, un socle sur lequel repose le vivre-ensemble. L’intégrité, l’égalité et la
+          solidarité sont les valeurs qui nous caractérisent. Nous nous engageons à promouvoir la
+          paix, l’entraide, la transparence et la solidarité entre toutes les filles et tous les fils de la
+          Guinée. Nous lutterons contre toutes formes de corruption, d’impunité, de discrimination
+          et de lourdeur administrative.
+        </p>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-button">Responsabilité individuelle et collective :</button>
+            <div class="accordion-content">
+              <p>Chaque citoyen doit prendre conscience de son rôle dans la société et agir de manière responsable pour le bien commun.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Respect mutuel :</button>
+            <div class="accordion-content">
+              <p>Encourager le respect des différences et promouvoir une culture de tolérance et de compréhension mutuelle.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Dialogue et réconciliation : </button>
+            <div class="accordion-content">
+              <p>Favoriser le dialogue entre les différentes communautés pour résoudre les conflits de manière pacifique et constructive.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Éducation et sensibilisation :</button>
+            <div class="accordion-content">
+              <p>Investir dans l’éducation pour inculquer les valeurs de paix, de justice et de respect des droits humains dès le plus jeune âge.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Participation citoyenne :</button>
+            <div class="accordion-content">
+              <p>Encourager la participation active des citoyens dans les processus décisionnels pour renforcer la démocratie et la gouvernance.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Justice sociale :</button>
+            <div class="accordion-content">
+              <p>Œuvrer pour une répartition équitable des ressources et des opportunités afin de réduire les inégalités et les tensions sociales.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-button">Développement durable :</button>
+            <div class="accordion-content">
+              <p>Promouvoir des pratiques de développement qui respectent l’environnement et les ressources naturelles pour les générations futures.
+                En intégrant ces valeurs, nous croyons fermement que nous pouvons construire une Guinée plus juste, plus solidaire et en paix.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const isActive = this.classList.contains('active');
+
+            accordionButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.nextElementSibling.style.display = 'none';
+            });
+
+            if (!isActive) {
+                this.classList.add('active');
+                this.nextElementSibling.style.display = 'block';
+            }
+        });
+    });
+});
+
+</script>
+   {% include '../footer.html'%}

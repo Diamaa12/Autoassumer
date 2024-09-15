@@ -1,0 +1,57 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site admin </title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Integration de la police de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Integration du fichier CSS en local-->
+    <link rel="stylesheet" href="{% static 'css/aappg_admin/inscription.css'%}">
+</head>
+<body>
+     <section class="wrapp-section">
+       <div class="container">
+           <div class="uui-logo_component"><img src="{% static 'images/Ellipse-1.png'%}" loading="lazy" alt="aappg-logo"></div>
+           <h1 class="header1">Bienvenue à la page d'inscription d'AAPPG</h1>
+            <h4 class="header4">Vous êtes un membre de la coordination de l'AAPPG ? Veuillez remplir le formulaire
+            pour accéder à l'administration du Site.</h4>
+
+
+        <div class="container_form">
+            {% if error %}
+           <p style="color:red; font-weight:700;">{{error}}</p>
+        {% endif %}
+           <form method='POST' action="{% url 'my_site:admin-inscription' %}" id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="66ad640bd6bbcd6403d43ac9" data-wf-element-id="1566d24a-14d0-168f-80b4-60786f2bcf97">
+              {% csrf_token %}
+               <div class="form-field-wrapper"><label for="name" class="field-label">Prenom & Nom <span class="required">*</span></label><br><input class="text-field error w-input" maxlength="256" name="name" wr-type="required-field" data-name="Name" placeholder="Votre Prenom & Nom" type="text" id="name">
+
+              </div>
+              <div class="form-field-wrapper"><label for="email" class="field-label">Email Address <span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="email" wr-type="required-field" data-name="Email" placeholder="Votre Email" type="email" id="email">
+
+              </div>
+              <div class="form-field-wrapper"><label for="password" class="field-label">Créer votre mot de passe <span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="password" wr-type="required-field" data-name="Password" placeholder="Taper le mot de passe" type="password" id="password">
+
+              </div>
+              <div class="form-field-wrapper"><label for="confirm-pass" class="field-label">Confirmer le mot de passe<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="confirm-pass" wr-type="required-field" data-name="Confirm-pass" placeholder="Retaper le mot de passe" type="password" id="confirm-pass">
+
+              </div>
+
+              <div class="form-field-wrapper"><label for="poste" class="field-label">Numéro de Téléphone<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="tel" data-name="Question" placeholder="Téléphone number" type="text" id="tel"></div>
+
+              <div class="form-field-wrapper"><label for="poste" class="field-label">Votre ville de résidence actuelle<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="city" data-name="Question" placeholder="Ville de résidence" type="text" id="city"></div>
+              <div class="form-field-wrapper"><label for="poste" class="field-label">Optionel<br> Donnez le titre que vous occupez au sain de l'AAPPG</label><br><input class="text-field w-input" maxlength="256" name="poste" data-name="Question" placeholder="Poste occupé au sein de l'AAPG" type="text" id="poste"></div>
+
+              <div class="form-field-wrapper"><label for="submit">Confirmer l'envoie du formlaire</label><br><input type="submit" value="Envoyer" name="envoyer" class="envoyer" id="submit"></div>
+            </form>
+
+        </div>
+      </div>
+    </section>
+
+</body>
+</html>

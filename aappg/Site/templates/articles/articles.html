@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/aappg_news/edit_article.css'%}">
+</head>
+<body>
+    <div class="container">
+        <div class="principal">
+            <h2>Bienvenue dans la page d'édition d'articles. </h2>
+              <form class="form-control" method="post" action="{% url 'my_site:articles-edit' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                        <p style="color:red;">{{ form.title.errors }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.content.label_tag }}
+                        {{ form.content }}
+                        <p style="color:red;">{{ form.content.errors }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.image.label_tag }} uploader une image d'illustration
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                            <p class="error">{{ form.image.errors }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.video.label_tag }} url Youtube á coller ici
+                        {{ form.video }}
+                        <p style="color:red;">{{ form.video.errors }}</p>
+                    </div>
+
+                    <input type="submit" value="Publier" class="submit-button">
+               </form>
+        </div>
+    </div>
+
+</body>
+</html>

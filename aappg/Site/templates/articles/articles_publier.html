@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for post in posts %}
+  <div class="w-layout-blockcontainer container_principal w-container">
+    <div class="container_items">
+      <h1>{{ post.title }}</h1>
+      <div></div>
+      <div>This is some text inside of a div block.</div>
+        {% if post.image %}
+        <img width="380" height="300" src="{{ post.image.url }}" loading="lazy" alt="{{ post.title }}">
+        {% endif %}
+    </div>
+     <div>
+        {% if post.content %}
+        <p>{{post.content}}</p>
+        {% endif %}
+    </div>
+
+    <div class="container_media-articles">
+      <div class="w-layout-vflex container_article">
+          {% if post.video %}
+        <div class="video_container"><iframe class="iframe" width="50%" height="315" src="{{ post.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          {% endif %}
+      </div>
+      <div>
+        <p class="autor">Publié le {{post.created_at}} par {{post.author}}</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="separator" style="width:80%; height:4px; margin-left:10%; margin-right:10%; background-color:grey;"> div block </div>
+{% endfor %}
+</body>
+</html>

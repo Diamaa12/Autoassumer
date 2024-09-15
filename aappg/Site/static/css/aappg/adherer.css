@@ -1,0 +1,11 @@
+container_adherants{
+    border:1px solid black;
+    background-color:grey;
+     //background-image: url('../../images/guinea_flag.jpeg');
+
+  background-position: 0 0;
+  background-size: cover;
+  flex-flow: wrap;
+  height: 750px;
+  display: flex;
+}

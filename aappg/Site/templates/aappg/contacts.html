@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}<title>Contacts</title>{%endblock%}
+{% block content %}
+
+  <section id="contacts" class="contacter_section">
+    <div class="w-layout-blockcontainer container-20 contacter_section w-container">
+      <div class="w-layout-vflex flex-block-5">
+        <h1 class="heading-28">Nous contacter</h1>
+        <p class="paragraph-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        <div class="div-block-16"><img src="{% static 'images/telephone1.png'%}" loading="lazy" width="75" sizes="(max-width: 479px) 60px, 75px" alt="tel_icone" srcset="{% static 'images/telephone1-p-500.png'%} 500w, {% static 'images/telephone1.png'%} 512w" class="image-24">
+          <div class="div-block-17">
+            <h2 class="heading-27">Nous contacter par téléphone</h2>
+            <p class="paragraph-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. <span class="text-span-2">Au numéro suivant +224 666-66-66.</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="w-layout-hflex flex-block-4">
+        <h3 class="heading-30">Choisissez le sujet de votre message</h3>
+        <div class="form-block-2 w-form">
+          <form id="wf-form-Message" name="wf-form-Message" data-name="Message" method="get" class="form-2" data-wf-page-id="668ed89625e91a07a6ce4bde" data-wf-element-id="4c9ae269-4947-23e6-74cf-7218d49c6409"><label class="w-radio"><input type="radio" name="radio" id="radio" data-name="Radio" class="w-form-formradioinput w-radio-input" value="Radio"><span class="radio-button-label w-form-label" for="radio">Intégrer le parti</span></label><label class="w-radio"><input type="radio" name="radio" id="radio-4" data-name="Radio 4" class="w-form-formradioinput w-radio-input" value="Radio"><span class="radio-button-label-2 w-form-label" for="radio-4">Sur le programme du parti</span></label><label class="w-radio"><input type="radio" name="radio" id="radio-3" data-name="Radio 3" class="w-form-formradioinput w-radio-input" value="Radio"><span class="radio-button-label-3 w-form-label" for="radio-3">Sur les données personnel</span></label><label class="w-radio"><input type="radio" name="radio" id="radio-2" data-name="Radio 2" class="w-form-formradioinput w-radio-input" value="Radio"><span class="radio-button-label-4 w-form-label" for="radio-2">Autre chose</span></label><label for="name" class="field-label-8">Prénom et nom</label><input class="name w-input" maxlength="256" name="name" data-name="Name" placeholder="Votre prénom et nom" type="text" id="name">
+            <div class="div-block-13">
+              <div class="div-block-15"><label for="mail" class="field-label-9">Mon e-mail</label><input class="email w-input" maxlength="256" name="mail" data-name="mail" placeholder="Votre adresse email" type="email" id="mail" required=""></div>
+              <div class="div-block-14"><label for="tel" class="field-label-10">Téléphone (Optionnel)</label><input class="tel w-input" maxlength="256" name="tel" data-name="tel" placeholder="votre numéro de téléphone " type="tel" id="tel" required=""></div>
+            </div><label for="objet_msg" class="field-label-11">L&#x27;objet de votre message</label><input class="msg_objet w-input" maxlength="256" name="objet_msg" data-name="objet_msg" placeholder="" type="text" id="objet_msg" required=""><label for="field" class="field-label-12">Votre message</label><textarea id="field" name="field" maxlength="5000" data-name="Field" placeholder="Donnez le plus de détails possible afin de nous permettre de répondre à votre question éfficacement" class="message_txt w-input"></textarea><input type="submit" data-wait="Please wait..." class="envoyer w-button" value="Soumettre">
+          </form>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ {% endblock%}

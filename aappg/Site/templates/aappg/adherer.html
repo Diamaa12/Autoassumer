@@ -1,0 +1,174 @@
+
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}<title>Adherants</title>{%endblock%}
+{% block content %}
+<style>
+    /* Ajout de fonts local dans le projet*/
+
+    @font-face {
+    font-family: 'Inter';
+    src: url('../../static/fonts/Inter-VariableFont_sIntwght.ttf') format('ttf');
+
+    font-weight: 400;
+    font-style: normal;
+}
+
+    .container_adherants{
+       width:100%;
+       height:auto;
+       display:block;
+
+        background-image: url('../../static/images/guinea_flag.jpeg');
+        background-position: center; /* Centrer l'image de fond */
+        background-size: contain; /* Assure que l'image est contenue dans le conteneur sans déformation */
+        background-repeat: no-repeat;
+    }
+   .div-block-21{
+        display:flex;
+        width: 100%; /* Ajustez selon vos besoins */
+        padding-top:30px;
+        background-color: rgba(5, 91, 166, 0.76);
+   }
+   .contenues{
+   width:90%;
+
+   }
+   .w-form{
+    width:70%;
+    gap: 30px;
+   }
+   .form-3{
+    display: flex;
+    flex-direction:column;
+    gap: 50px; /* Gap de 50px */
+    position:relative;
+    left:50px;
+    box-shadow: 0px 2px 5px 7px rgba(0, 0, 0, 0.2);
+    padding:30px;
+    color:white;
+   }
+   .div-block-22{
+        display:flex;
+        flex-direction:row;
+        gap:30px;
+   }
+    .submit-button{
+        width:100%;
+        background-color:#0a46ac;
+        padding:20px;
+    }
+    label{
+        font-family: 'Inter', sans-serif;
+        font-style:light;
+        font-size:12px;
+    }
+
+    .submit-button:hover{
+        background-color:#c040b8;
+    }
+    .select-field, .select-field-3, input, .submit-button, .select-field-2{
+        border-radius:5px;
+    }
+    input, select{
+        transition: box-shadow 0.3s ease;
+        box-shadow:none;
+    }
+    input:focus{
+        outline: none;
+        box-shadow: 0 0 10px #EDF1F6;
+
+
+    }
+    @media all screen and (min-width: 768px) {
+              .div-block-21{
+                display:flex;
+                flex-direction:row;
+                width: 100%; /* Ajustez selon vos besoins */
+                padding-top:30px;
+                background-color: rgba(5, 91, 166, 0.76);
+                }
+          }
+    @media only screen and (max-width: 768px) {
+              .div-block-21{
+                display:flex;
+                flex-direction:column;
+                width: 100%; /* Ajustez selon vos besoins */
+                padding-top:30px;
+                background-color: rgba(5, 91, 166, 0.76);
+          }
+
+    }
+    @media only screen and (max-width: 600px) {
+          .div-block-21{
+                display:flex;
+                flex-direction:column;
+                width: 100%; /* Ajustez selon vos besoins */
+                padding-top:30px;
+                background-color: rgba(5, 91, 166, 0.76);
+          }
+           .heading-36{
+            position:relative;
+            left:60px;
+           }
+           .w-form{
+                width:100%;
+                position:relative;
+                left:-25px;
+            }
+
+    }
+</style>
+  <section id="adherant">
+    <div class="container_adherants">
+      <div class="div-block-21">
+        <h1 class="heading-36">REJOINDRE L&#x27;AAP-GUINÉE</h1>
+        <div class="contenues">
+          <div class="w-form">
+            <form id="wf-form-genre" name="wf-form-genre" data-name="genre" method="get" class="form-3" data-wf-page-id="668ed951e983de45437181f4" data-wf-element-id="549d1423-4026-c8fd-2cde-82b932a44573">
+              <div class="text-block-40">Votre identité</div>
+              <div class="w-layout-vflex content-child1"><label for="civilite" class="civilite">Civilité <a href="#"><strong><code class="code">*</code></strong></a></label><select id="civilite" name="civilite" data-name="civilite" required="" class="select-field w-select">
+                  <option value="Masculin">Masculin</option>
+                  <option value="feminin">Féminin</option>
+                </select><label for="name-2" class="field-label-15">Prénom &amp; Nom<strong><code class="code-2">*</code></strong></label>
+                <div class="div-block-22"><input class="nom_adherant w-input" maxlength="256" name="Nom" data-name="Nom" placeholder="Votre prénom" type="text" id="Nom" required=""><input class="prenom_adherant w-input" maxlength="256" name="prenom" data-name="prenom" placeholder="Votre nom de famille" type="text" id="prenom" required=""></div><label for="Plage-d-ges" class="field-label-16">Plage d&#x27;âges <strong><code class="code-3">*</code></strong></label><select id="Plage-d-ges" name="Plage-d-ges" data-name="Plage d&#x27;âges" required="" class="select-field-2 w-select">
+                  <option value="18 - 25 ans">18 -25 ans</option>
+                  <option value="First">26 - 40 ans</option>
+                  <option value="Second">40 - 55 ans</option>
+                </select><label for="email-3" class="field-label-17">Votre email</label><input class="text-field w-input" maxlength="256" name="email" data-name="email" placeholder="Votre adresse mail" type="email" id="email-3" required=""><label for="phone" class="field-label-18">Téléphone</label><input class="text-field-2 w-input" maxlength="256" name="phone" data-name="phone" placeholder="Votre numéro de Tél:" type="tel" id="phone">
+              </div>
+              <div class="text-block-41">Lieu de résidence</div>
+              <div class="content-child2"><label for="lieu_de_residence" class="field-label-14">Votre Pays résidence <code class="code-4">* </code></label><select id="lieu_de_residence" name="lieu_de_residence" data-name="lieu_de_residence" class="select-field-3 w-select">
+                  <option value="guinee">Guinée</option>
+                  <option value="senegal">Sénégal</option>
+                  <option value="cotedivoir">Côte d&#x27;Ivoire</option>
+                  <option value="gambie">Gambie</option>
+                  <option value="liberia">Liberia</option>
+                  <option value="angola">Angola</option>
+                  <option value="usa">USA</option>
+                  <option value="france">France</option>
+                  <option value="allemagne">Allemagne</option>
+                  <option value="italie">Italie</option>
+                  <option value="espagne">Espagne</option>
+                  <option value="belgique">Belgique</option>
+                  <option value="england">Angleterre</option>
+                  <option value="togo">Togo</option>
+                  <option value="benin">Bénin</option>
+                  <option value="australie">Australie</option>
+                </select><label for="Ville" class="field-label-19">Votre Ville de résidence actuelle</label><input class="text-field-3 w-input" maxlength="256" name="Ville" data-name="Ville" placeholder="Votre ville actuels" type="text" id="Ville"></div>
+              <div class="members_aappg">RGPD &amp; Termes et conditions</div>
+              <div class="content-child3"><label class="w-checkbox"><input type="checkbox" name="" data-name="" class="w-checkbox-input"><span class="checkbox-label-2 w-form-label">J’accepte les <a href="#" class="link-5">termes et conditions</a> et la politique de confidentialité.<code class="code-6">*</code></span></label><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Submit"></div>
+            </form>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

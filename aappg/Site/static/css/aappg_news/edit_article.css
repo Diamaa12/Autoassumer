@@ -1,0 +1,93 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.principal{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+form{
+    padding:20px;
+    margin:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+}
+.form-group{
+    margin-top:20px;
+    width:100%;
+    display:block;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.form-group .help-text {
+    font-size: 0.9em;
+    color: #555;
+}
+.form-group:last-child .help-text {
+    margin-bottom: 0;
+}
+.submit-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+/* styles.css */
+
+/* Couleur générique pour le placeholder */
+::placeholder {
+    color: #A7A7A7; /* Par exemple, gris clair */
+}
+
+/* Préfixes pour les navigateurs */
+:-ms-input-placeholder {
+    color: #888;
+}
+
+::-ms-input-placeholder {
+    color: #888;
+}
+
+::-webkit-input-placeholder {
+    color: #888;
+}
+
+/* Placeholder spécifique */
+.form-control::placeholder {
+    color: #888;
+}
+
+/* Préfixes pour les navigateurs */
+.form-control:-ms-input-placeholder {
+    color: #888;
+}
+
+.form-control::-ms-input-placeholder {
+    color: #888;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #888;
+}
+.error{
+    color:red;
+}

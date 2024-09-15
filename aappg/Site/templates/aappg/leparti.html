@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}<title>Adherants</title>{%endblock%}
+{% block content %}
+
+<!-- le style du fhichier-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    color:#0d6883;
+}
+.section_container{
+    padding-top:20px;
+    padding-bottom:20px;
+    margin-top:50px;
+    margin-bottom:50px;
+     display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+
+
+}
+.text_intro{
+    font-family: 'Inter', sans-serif;
+    font-size:28px;
+    font-weight:700;
+    text-align:center;
+}
+
+.container_accordeon{
+    background-color:rgba(234, 234, 234, 0.83);
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+     width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+}
+.accordion {
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+    justify-content:center;
+
+    gap: 15px; /* Adjust the gap as needed */
+    width: 80%;
+    height:auto;
+    max-width: auto;
+    margin: 0 auto;
+    padding-bottom:30px;
+
+    overflow: hidden;
+}
+
+
+.accordion-item {
+    border-bottom: 1px solid #ccc;
+    border-radius:8px;
+}
+
+.accordion-button {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    background-color: rgb(196, 196, 196,0.4);
+    border: none;
+    border-radius:10px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-button::after {
+    content: '\25B6'; /* Code for rightward arrow */
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.accordion-button.active::after {
+    transform: rotate(90deg); /* Rotate the arrow downwards */
+}
+
+.accordion-button:hover {
+    background-color: #62a1eb;
+    color:white;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow-y: auto; /* Défilement vertical */
+    overflow-x: hidden; /* Masquer le défilement horizontal */
+    transition: max-height 0.2s ease-out;
+    background-color: white;
+    padding: 0 15px;
+    background-color:rgba(182, 132, 90, 0.1);
+    position:relative:
+    z-index:4;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    color:#241f31;
+
+}
+.text_intro{
+position:inline-block;
+padding:15px;
+}
+
+
+</style>
+<section id="mouvement_section" class="section_container">
+    <div class="container_accordeon">
+        <h1 class="text_intro">Les valeurs et conditions que prône l'AAP-GUINÉE</h1>
+    <div class="accordion">
+        <div class="accordion-item">
+            <button class="accordion-button">Nos valeurs au sein de l'AAPPG.</button>
+            <div class="accordion-content">
+                <p>Les valeurs de l'Auto-Assumassions pour la Paix en Guinée reflètent un engagement fort en faveur de la paix, de l'intégrité, et de la justice sociale, tout en s'appuyant sur des principes de non-violence et de responsabilité collective. L’organisation s’efforce de promouvoir un modèle de société plus juste et égalitaire, tout en restant attachée à des pratiques éthiques et à une gouvernance transparente...</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">Paix et Réconciliation Nationale</button>
+            <div class="accordion-content">
+                <p>L’AAPG place la promotion de la paix au centre de son action. L'organisation vise à :
+    • Promouvoir la réconciliation nationale en Guinée, un pays marqué par des tensions sociales et politiques.
+    • Favoriser le dialogue entre les différentes communautés et acteurs sociaux pour résoudre les conflits de manière pacifique, plutôt que par la violence.
+    • Ses membres s'engagent à œuvrer activement pour créer un climat de paix et de cohésion sociale dans toutes les régions du pays​.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">Intégrité, Responsabilité et Respect</button>
+            <div class="accordion-content">
+                <p>
+                    Ces valeurs morales sont les principes directeurs de l’AAPG :
+    • Intégrité : Les membres doivent agir avec honnêteté dans toutes les interactions au sein de l'organisation et avec le public.
+    • Responsabilité : Chaque membre est responsable non seulement de ses actions individuelles, mais aussi de son engagement envers les objectifs de l’organisation.
+    • Respect : Les membres doivent se traiter avec dignité, respecter les règles de l'organisation et faire preuve de respect mutuel dans toutes les relations. Cette valeur s'étend également aux interactions avec les parties externes pour préserver l’image de l’organisation​.
+                </p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">Bonne Gouvernance et Développement Socio-économique</button>
+            <div class="accordion-content">
+                <p>L'AAPG se concentre sur la promotion de la bonne gouvernance et le développement socio-économique de la Guinée. Cela inclut :
+    • Lutte contre la corruption : L’organisation s’engage à dénoncer et combattre toutes formes de corruption en Guinée, tant au niveau public que privé.
+    • Transparence : L'AAPG souhaite instaurer des pratiques qui garantissent que les décisions publiques soient prises de manière transparente et éthique.
+    • Développement durable : Promouvoir des politiques qui encouragent un développement économique équilibré, tout en assurant un accès équitable aux ressources pour toutes les couches sociales de la Guinée</p>
+            </div>
+        </div>
+         <div class="accordion-item">
+            <button class="accordion-button">Égalité, Inclusion Sociale et Droits de l’Homme</button>
+            <div class="accordion-content">
+                <p>L’AAPG valorise l’égalité et les droits de l'homme dans toutes ses activités :
+    • Égalité des genres : L’organisation promeut une participation équitable des hommes et des femmes dans toutes ses initiatives et vise à éliminer les discriminations basées sur le genre.
+    • Inclusion sociale : L'AAPG veut s'assurer que tous les segments de la société guinéenne soient inclus dans le processus de réconciliation et de développement, en particulier les groupes marginalisés.
+    • Droits de l’homme : L'AAPG est fortement engagée dans la défense des droits humains universels, en condamnant toute violation de ces droits, qu'elle provienne de l'État ou d'autres acteurs​.</p>
+            </div>
+        </div>
+         <div class="accordion-item">
+            <button class="accordion-button">Non-violence et Respect des Lois</button>
+            <div class="accordion-content">
+                <p>L'organisation s'engage à une lutte pacifique, et elle rejette toutes formes de violence :
+    • Non-recours à la violence : Contrairement à d'autres mouvements qui peuvent envisager des moyens plus radicaux, l'AAPG insiste sur l’importance de la non-violence. Leurs actions se concentrent sur la sensibilisation, la communication, et le lobbying pour parvenir à des solutions pacifiques.
+    • Respect des lois : L'organisation veille à ce que toutes ses actions soient conformes aux lois nationales et internationales. Ses membres sont invités à toujours agir dans un cadre légal pour éviter toute atteinte à l’ordre public.
+</p>
+            </div>
+        </div>
+         <div class="accordion-item">
+            <button class="accordion-button">Solidarité et Coopération</button>
+            <div class="accordion-content">
+                <p>L’AAPG met un point d’honneur à renforcer la solidarité entre ses membres et à établir des relations positives à l'échelle internationale :
+    • Coopération nationale et internationale : Le mouvement veut renforcer les liens entre les Guinéens, mais aussi entre l’AAPG et d’autres organisations ou mouvements prônant des valeurs similaires à l'international.
+    • Cette solidarité s’étend aux membres de la diaspora guinéenne, qui jouent un rôle crucial dans la promotion des objectifs de l’AAPG.</p>
+            </div>
+        </div>
+         <div class="accordion-item">
+            <button class="accordion-button">Confidentialité et Sécurité</button>
+            <div class="accordion-content">
+                <p>La confidentialité est un pilier essentiel de l'organisation :
+    • Respect des informations sensibles : Les membres sont tenus de protéger toutes les informations sensibles ou confidentielles partagées au sein de l'organisation.
+    • Sécurité : L'AAPG veille à ce que ses membres suivent des règles strictes de sécurité pour protéger les informations et les membres eux-mêmes contre toute menace potentielle. Cela est crucial dans un environnement où les conflits politiques peuvent parfois menacer la sécurité des individus impliqués.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<script type="text/javascript">
+    document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const accordionContent = button.nextElementSibling;
+
+        button.classList.toggle('active');
+
+        if (button.classList.contains('active')) {
+            accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+        } else {
+            accordionContent.style.maxHeight = 0;
+        }
+    });
+});
+
+</script>
+
+
+{% endblock %}

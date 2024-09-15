@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site admin </title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Integration de la police de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Integration du fichier CSS en local-->
+    <link rel="stylesheet" href="{% static 'css/aappg_admin/connexion.css'%}">
+</head>
+<body>
+     <section class="wrapp-section">
+       <div class="container">
+           <div class="uui-logo_component"><img src="{% static 'images/Ellipse-1.png'%}" loading="lazy" alt="aappg-logo"></div>
+           <h1 class="header1">Page d'administration d'AAPPG </h1>
+            <h4 class="header4">Veuillez saisir vos coordonnés pour acceder à la page d'administration du site.</h4>
+            {% if session_expired %}
+                 <div class="" style="color:red">{{ session_expired }}</div>
+            {% endif %}
+        <div class="container_form">
+            {% if error %}
+                <h3 class="error" style="color:red; font-weight:700;">{{error}}</h3>
+            {% endif %}
+           <form method='post' action="{% url 'my_site:admin-connexion'%}" id="email-form" name="email-form" data-name="Email Form"  class="form" data-wf-page-id="66ad640bd6bbcd6403d43ac9" data-wf-element-id="1566d24a-14d0-168f-80b4-60786f2bcf97">
+               {% csrf_token %}
+               <div class="form-field-wrapper"><label for="email" class="field-label">Code Personel <span class="required">*</span></label><br><input class="text-field error w-input" maxlength="256" name="email" wr-type="required-field" data-name="Name" placeholder="Votre email" type="email" id="email"></div>
+
+              <div class="form-field-wrapper"><label for="password" class="field-label">Teper votre mot de passe <span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="password" wr-type="required-field" data-name="Password" placeholder="Taper le mot de passe" type="password" id="password">
+
+              </div>
+              <div class="form-field-wrapper"><label for="submit"></label><br>
+                  <!-- On vérifie ici si l'utilisateur a été rediriger d'une autre page vers ce formulaire d'identification obligatoire,
+                  si tel est le cas, on le redirige vers ce même page aprés avoir s'identifié.-->
+                   {% if request.GET.next %}
+                  <input type="hidden" name="next" value="{{request.GET.next}}">
+                  {% endif %}
+                  <input type="submit" value="Se Connecter" name="envoyer" class="envoyer" id="submit"></div>
+            </form>
+
+        </div>
+      </div>
+    </section>
+
+</body>
+</html>

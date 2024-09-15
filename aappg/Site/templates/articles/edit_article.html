@@ -1,0 +1,43 @@
+{% load static %}
+<!-- edit_article.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Article</title>
+    <link rel="stylesheet" href="{% static 'css/aappg_news/modify_article.css'%}">
+</head>
+<body>
+    <div class="container_level_one">
+        <h1 class="para1">Bonjour <span style="color:orange; font-weight:700;">{{user.user}}</span>, ici, vous pouvez effectuer des modifications sur ce poste</h1>
+        <form method="POST" enctype="multipart/form-data" class="forms">
+            {% csrf_token %}
+              <div class="form-group">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                        <p style="color:red;">{{ form.title.errors }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.content.label_tag }}
+                        {{ form.content }}
+                        <p style="color:red;">{{ form.content.errors }}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_image">Image:</label>
+                        <input type="file" name="image" id="id_image" accept="image/*">
+                        {% if form.image.errors %}
+                        <p class="error">{{ form.image.errors }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.video.label_tag }} L'url Youtube à coller ici
+                        {{ form.video }}
+                        <p style="color:red;">{{ form.video.errors }}</p>
+                    </div>
+            <button class='btn_submit' type="submit">Save changes</button>
+        </form>
+    </div>
+</body>
+</html>

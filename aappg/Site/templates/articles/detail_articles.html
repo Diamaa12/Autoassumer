@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}<title>Article suite</title>{%endblock%}
+{% block content %}
+<head>
+    <link href="{% static 'css/foundation-icons.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/aappg_news/detail_article.css'%}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <section class="sextion_page">
+        <div class="div_container_principal">
+            <div class="article_container">
+                 <div class="link_container"><a href="{% url 'my_site:index'%}" class="head_link"><i class="fi-home"></i><span class="span">/</span><p class="para">Article</p></a></div>
+                 <h1 class="titre_article">{% if title %}{{title}}{% endif %}</h1>
+                 <p class="para_article">{% if content %}{{content}}{% endif %} </p><div class="container_video"><iframe class="embedly-embed" src="src={{video}}" width="940" height="528" scrolling="no" allowfullscreen="" title="Les 10 Erreurs à Éviter Lors de la création de votre site web"></iframe></div>
+                 <div class="div_container_after_article">
+                     <div class="icone_social"><p class="para2">Partager sur: </p>
+                         <i class="fab fa-facebook"></i>
+                         <i class="fab fa-twitter"></i>
+                         <i class="fab fa-instagram"></i>
+                         <i class="fab fa-linkedin"></i>
+                         <i class="fab fa-telegram"></i>
+                         <i class="fab fa-tiktok"></i>
+                     </div>
+                     <div class="publication_date"><p class="date">Publié le: {% if created_at %}{{created_at}}{% endif %}</p><p class="autor">par {% if author %}{{author}}{% endif %}</p></div>
+                 </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.querySelector('.fa-facebook').addEventListener('mouseenter', function(event) {
+        event.stopPropagation();
+            });
+    </script>
+{% endblock %}

@@ -1,0 +1,8 @@
+asgiref==3.8.1
+colorama==0.4.6
+cssutils==2.11.1
+Django==5.0.7
+fpdf==1.7.2
+more-itertools==10.3.0
+pillow==10.4.0
+sqlparse==0.5.1

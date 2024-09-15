@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+</head>
+<body>
+    <div class="my_div"><h2>Mon Super Site</h2><p class="para1">AAPPG autoassumation pour la paix en guinée</p></div>
+
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Users by Permissions</title>
+</head>
+<body>
+    <h1>Users by Permissions</h1>
+    {% for permission, users in users_by_permission.items %}
+        <h2>{{ permission.name }}</h2>
+        <ul>
+            {% for user in users %}
+                <li>{{ user.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
+
+</body>
+</html>

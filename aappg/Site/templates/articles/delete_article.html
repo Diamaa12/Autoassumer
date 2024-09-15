@@ -1,0 +1,20 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/aappg_news/delete_article.css'%}">
+</head>
+<body>
+    <div class="container">
+       <h2>Êtes-vous sûr de vouloir supprimer cet Article  <span class="span">"{{article.title}}" </span>?</h2>
+        <form method="post">
+          {% csrf_token %}
+          <button class="btn" type="submit">Delete</button>
+          <a class="delete_link" href="{% url 'my_site:articles_list' %}">Cancel</a>
+      </form>
+    </div>
+</body>
+</html>

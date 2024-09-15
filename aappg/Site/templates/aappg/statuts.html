@@ -1,0 +1,80 @@
+{% include '../header.html'%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/aappg/statuts.css'%}">
+  <section id="statuts">
+    <div class="w-layout-blockcontainer w-container">
+      <div class="contenues">
+        <h2 class="heading-23">Unité - Dignité – Fierté</h2>
+        <h3 class="heading-26">Sont les mots que chaque être humain digne de lui, devrait porter dans son coeur.</h3>
+
+    <div class="accordion">
+        <div class="accordion-item">
+            <button class="accordion-button">*Unité</button>
+            <div class="accordion-content">
+                <p>Forts de notre engagement militant pour la paix et l’unité
+de nos peuples, nous croyons profondément que l’unité est
+l’élément fondamental sur lequel repose l’avenir de notre Nation.
+Grâce à l’unité, nous pouvons améliorer les conditions de vie de
+millions de personnes dans un esprit de fraternité, d’entraide et de
+solidarité.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">*Dignité</button>
+            <div class="accordion-content">
+                <p>Conscients de nos origines, nous sommes fiers de nos
+ancêtres qui nous ont transmis des valeurs d’honnêteté, de justice
+et d’égalité. Nous regroupons toutes ces valeurs héritées de nos
+ancêtres sous un mot : la</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">*Fierté</button>
+            <div class="accordion-content">
+                <p>Nous estimons qu’un être humain doté de dignité peut
+inspirer des millions d’autres sur le chemin de la rédemption</p>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="list_a_puces">
+        <ul class="list-group">
+          <li class="list-group-item active">Unité<br/><p class="list_items">Forts de notre engagement militant pour la paix et l’unité
+de nos peuples, nous croyons profondément que l’unité est
+l’élément fondamental sur lequel repose l’avenir de notre Nation.
+Grâce à l’unité, nous pouvons améliorer les conditions de vie de
+millions de personnes dans un esprit de fraternité, d’entraide et de
+solidarité.</p></li>
+          <li class="list-group-item active">Dignité<br/><p class="list_items">Conscients de nos origines, nous sommes fiers de nos
+ancêtres qui nous ont transmis des valeurs d’honnêteté, de justice
+et d’égalité. Nous regroupons toutes ces valeurs héritées de nos
+ancêtres sous un mot : la</p></li>
+          <li class="list-group-item active">Fierté</br><p class="list_items">Nous estimons qu’un être humain doté de dignité peut
+inspirer des millions d’autres sur le chemin de la rédemption</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const isActive = this.classList.contains('active');
+
+            accordionButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.nextElementSibling.style.display = 'none';
+            });
+
+            if (!isActive) {
+                this.classList.add('active');
+                this.nextElementSibling.style.display = 'block';
+            }
+        });
+    });
+});
+
+</script>
+  {% include '../footer.html'%}

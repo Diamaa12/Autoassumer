@@ -1,0 +1,57 @@
+# Python
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.so
+
+# Django
+*.log
+local_settings.py
+
+# Environments
+.venv/
+env/
+venv/
+.myenv/
+
+# PyCharm
+.idea/
+.vscode/
+.project
+.pydevproject
+
+# Coverage
+.coverage
+htmlcov/
+.tox/
+
+# Migrations
+*/migrations/*
+
+# Database
+db.sqlite3
+*.db
+
+# Static
+/staticfiles/
+/media/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual environment files
+.aappgenv
+*.env
+.env.local
+.env.production
+.env.dev
+
+# pipenv
+Pipfile.lock
+
+# MySQL dumps
+*.dump

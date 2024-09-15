@@ -1,0 +1,24 @@
+/* styles.css */
+.pagination {
+    text-align: center; /* Centre le texte horizontalement */
+    margin: 10px 0;     /* Ajoute de l'espace en haut et en bas de la pagination */
+}
+
+.pagination .page-links {
+    display: inline-block; /* Affiche les liens de pagination en ligne */
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+}
+
+.pagination .page-links a,
+.pagination .page-links span {
+    margin: 0 5px; /* Ajoute de l'espace entre les liens et le texte */
+    padding: 8px 8px; /* Ajoute du padding pour rendre les liens cliquables plus facilement */
+    text-decoration: none; /* Retire la ligne sous les liens */
+    color: #007bff; /* Colore les liens en bleu */
+}
+
+.pagination .page-links a:hover {
+    background-color: #e9ecef; /* Change la couleur de fond au survol */
+    border-radius: 4px; /* Ajoute un bord arrondi */
+}

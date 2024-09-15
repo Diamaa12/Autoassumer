@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}<title>Donate</title>{%endblock%}
+{% block content %}
+</section>
+  <section id="donate_section" class="donate_page">
+    <div class="w-layout-blockcontainer container-19 w-container">
+      <div class="don_para">
+        <div class="text-block-31">Soutenir le parti</div>
+        <h1 class="heading-21">Faire un don</h1>
+        <h3 class="heading-22">Donnez-nous les moyens de nos ambitions. Faites un don et soutenez les actions du parti</h3>
+        <p class="paragraph-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        <div class="international-day-of-charity" data-w-id="2d62c676-1fac-9cb3-636d-181b029cecd0" data-animation-type="lottie" data-src="{% static 'documents/1023738.json' %}" data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="2" data-duration="10"></div>
+      </div>
+      <div class="don_form">
+        <h2 class="heading-20">Remplir le formulaire </h2>
+        <a href="#" class="button_perso_data donate w-button">                     JE DONNE<img src="{% static 'images/love_1720459719905-all-icons.svg'%}" alt="Ikonik Icon" class="ikonik-t2cec"></a>
+        <div class="w-layout-hflex btn_div">
+          <a href="#" class="button-27 w-button">5 €</a>
+          <a href="#" class="button-27 w-button">10 €</a>
+          <a href="#" class="button-27 w-button">15 €</a>
+          <a href="#" class="button-27 w-button">25 €</a>
+          <a href="#" class="button-27 w-button">50 €</a>
+        </div>
+        <div class="div-block-7">
+          <div class="text-block-24">Montant de votre choix:</div>
+          <a href="#" class="button-28 w-button">..,..</a>
+        </div>
+        <a href="#" class="button-29 w-button">                     Vos coordonnés personnelle<img src="{% static 'images/book_1720545490178-all-icons.svg'%}" alt="Ikonik Icon" class="ikonik-exkp1"></a>
+        <div class="form-block w-form">
+          <form id="email-form" name="email-form" data-name="Email Form" redirect="www.paypal.com" data-redirect="www.paypal.com" method="post" class="form" data-wf-page-id="668c193c4eb05b15032efb16" data-wf-element-id="405825bf-877c-c5a2-555d-b0e335129c86"><label for="prenom" class="field-label">Prénom *</label><input class="prenom w-input" maxlength="256" name="prenom" data-name="Prénom" placeholder="Prenom" type="text" id="Pr-nom" required=""><label for="name" class="field-label-2">Nom *</label><input class="nom w-input" maxlength="256" name="name" data-name="Name" placeholder="nom" type="text" id="name"><label for="email" class="field-label-3">Adresse Email *</label><input class="mail w-input" maxlength="256" name="email" data-name="Email" placeholder="email" type="email" id="email" required=""><label for="email-3" class="field-label-4">Confirmation email *</label><input class="repeat_mail w-input" maxlength="256" name="email-3" data-name="Email 3" placeholder="confirmez email" type="email" id="email-3" required=""><label for="date_de_naissance" class="field-label-5">Date de naissance</label><input type="date" name="date_de_naissance" class="date_of_birthday"><label for="email-2" class="field-label-6">Ville</label><input class="ville w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="votre ville actuelle " type="email" id="email-2" required=""><label for="pays" class="field-label-7">Pays de résidence</label><input class="pays w-input" maxlength="256" name="pays" data-name="pays" placeholder="pays" type="text" id="pays" required=""><label class="w-checkbox check_btn"><input type="checkbox" name="checkbox" id="checkbox" data-name="checkbox" required="" class="w-checkbox-input"><span class="checkbox-label w-form-label" for="checkbox">   J&#x27;accepte les <a target="_blank" href="https://www.helloasso.com/cgu-utilisateur">Conditions Générales d’Utilisation</a> du service et j&#x27;ai lu la <a target="_blank" href="https://www.helloasso.com/confidentialite"> charte de confidentialité </a>. *</span></label>
+            <div class="text-block-25">* Champs obligatoires</div>
+            <div class="div-block-8">
+              <div>Choisissez votre méthode de paiement </div>
+              <div class="w-embed">
+                <a href="www.paypal.com"></a>
+              </div>
+              <a href="https://www.paypal.com"><img class="image-18" src="{% static 'images/card.png'%}" alt="" sizes="(max-width: 479px) 11vw, (max-width: 991px) 8vw, 60px" href="paypal.com" loading="lazy" srcset="{% static 'images/card-p-500.png'%} 500w, {% static 'images/card.png'%} 512w"></a>
+              <a href="https://www.mastercard.com"><img sizes="(max-width: 479px) 11vw, (max-width: 991px) 8vw, 60px" srcset="{% static 'images/card1-p-500.png'%} 500w, {% static 'images/card1.png'%} 512w" alt="" src="{% static 'images/card1.png'%}" loading="lazy" class="image-16"></a>
+              <a href="https://www.visa.com"><img sizes="(max-width: 479px) 11vw, (max-width: 991px) 8vw, 60px" srcset="{% static 'images/visa-p-500.png'%} 500w, {% static 'images/visa.png'%} 512w" alt="" src="{% static 'images/visa.png'%}" loading="lazy" class="image-17"></a>
+            </div><input type="submit" data-wait="Please wait..." class="soumettre w-button" value="Valider votre don">
+          </form>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock%}

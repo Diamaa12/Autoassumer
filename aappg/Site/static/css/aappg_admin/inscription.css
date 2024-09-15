@@ -1,0 +1,137 @@
+body{
+    display:block;
+}
+.wrapp-section{display:block;
+               height:100%;
+
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(5, 0, 255, 0.05), rgba(5, 0, 255, 0.4));
+    overflow:hidden;
+}
+img{
+    height:90px;
+    width:90px;
+    margin-top:40px;
+}
+.header1{
+
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size:48px;
+    font-style: bold;
+    background:linear-gradient(45deg, #0E134B, rgb(59, 75, 249));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+.header4{
+    display:inline-block;
+    width:50%;
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-feature-settings: "liga" 1, "calt" 1;
+    color:#1e1e2e;
+    padding:20px;
+
+}
+.container_form{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius:15px;
+    background-color:white;
+    padding:50px;
+    margin:30px;
+
+}
+.form{
+    display: flex;
+    flex-direction:column;
+    gap: 35px; /* Gap de 50px */
+    padding:auto;
+     font-family:'Inter', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-feature-settings: "liga" 1, "calt" 1;
+    color:#333;
+}
+.form-field-wrapper{
+    display: flex;
+    flex-direction:column;
+    gap: 7px; /* Gap de 50px */
+
+}
+input{
+    height:30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius:5px;
+    padding:5px;
+}
+input::placeholder {
+    color: rgb(119, 118, 123, 0.4); /* Couleur de placeholder pour les navigateurs modernes */
+    opacity: 1; /* Assure que la couleur s'applique correctement dans Firefox */
+ }
+
+input:focus{
+    outline: none;
+    box-shadow: 0 0 10px rgb(119, 118, 123);
+}
+.envoyer{
+    width:100%;
+    background-color:rgb(36, 31, 49);
+    color:white;
+    font-weight:400;
+    height:40px;
+    text-align:center;
+}
+.envoyer:hover{
+    background-color:rgb(119, 118, 123);
+}
+.required{
+    color:red;
+    font-weight:700;
+
+}
+/* Media queries */
+
+
+ @media only screen and (max-width: 680px) {
+        .container{
+            overflow:hidden;
+        }
+        .header1{
+        position:relative;
+        left:40px;
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-size:28px;
+        font-style: bold;
+        background:linear-gradient(45deg, #0E134B, rgb(59, 75, 249));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    .header4{
+        display:inline-block;
+        width:90%;
+        font-family:'Inter', sans-serif;
+        font-weight:300;
+        font-style:normal;
+        font-feature-settings: "liga" 1, "calt" 1;
+        color:#03023a;
+        padding:20px;
+
+    }
+}

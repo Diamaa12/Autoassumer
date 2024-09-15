@@ -1,0 +1,135 @@
+
+.sextion_page{
+    display: grid;
+    place-items: center; /* Centre horizontalement et verticalement */
+    margin-top:20px;
+}
+.div_container_principal{
+    max-width:940px;
+    box-shadow: 0px 2px 5px 2px #0e0e0e;
+    padding: 15px;
+    padding-bottom:30px;
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.article_container{
+    display:flex;
+    flex-direction:column;
+}
+.link_container{
+    display:flex;
+    flex-direction:row;
+}
+.head_link{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:5px;
+    text-decoration:none;
+}
+.fi-home{
+    font-size:30px;
+}
+.span{
+    font-size:24px;
+}
+.para{
+    font-size:18px;
+    font-family: 'Inter', sans-serif;
+}
+.para, .span, .fi-home{color:rgb(50, 48, 48, 0.6);}
+.titre_article{
+    font-family: 'Inter', sans-serif;
+    color:rgb(50, 48, 48, 0.8);
+}
+
+.para_article{
+    font-family: 'Inter', sans-serif;
+}
+.embedly-embed{
+    border:3px solid rgb(238, 51, 59);
+}
+.div_container_after_article{
+    margin-top:10px;
+    margin-bottom:50px;
+    display:flex;
+    justify-content: space-between; /* Place les éléments aux extrémités */
+    align-items: center; /* Centre verticalement si nécessaire */
+    overflow:hidden;
+}
+.publication_date{
+    display:flex;
+    flex-direction:row;
+    gap:20px;
+}
+.para2{
+    font-family: 'Inter', sans-serif;
+    font-size:14px;
+    color:rgb(50, 48, 48, 0.6);
+}
+.date, .autor{
+    font-family: 'Inter', sans-serif;
+    font-size:12px;
+    color:rgb(50, 48, 48, 0.6);
+}
+.icone_social{
+    display:flex;
+    flex-direction:row;
+    gap:25px;
+    box-sizing: border-box;
+}
+
+.fa-facebook{
+    font-size:30px;
+    color:#3b5998;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+
+}
+ .fa-facebook:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+
+ }
+.fa-twitter{
+    font-size:30px;
+
+transition: all 0.3s ease;
+}
+.fa-twitter:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+}
+.fa-instagram{
+    font-size:30px;
+    color:#8a3ab9;
+    transition: all 0.3s ease;
+}
+.fa-instagram:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+}
+.fa-linkedin{
+    font-size:30px;
+    color:#0077B5;
+    transition: all 0.3s ease;
+}
+.fa-linkedin:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+}
+.fa-telegram{
+    font-size:30px;
+    color:#0088cc;
+    transition: all 0.3s ease;
+}
+.fa-telegram:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+}
+.fa-tiktok{
+    font-size:30px;
+    color:#69C9D0;
+    transition: all 0.3s ease;
+}
+.fa-tiktok:hover{
+    border-bottom:6px solid rgb(246, 0, 115, 0.8);
+}
