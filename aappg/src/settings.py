@@ -119,14 +119,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-#Envoie d'un main de confirmation lors de l'inscription
-EMAIL_HOST = 'smtp.ionos.de'
-EMAIL_PORT = 587 #Port smpt sortant
-EMAIL_USE_TLS = True  # Si votre serveur SMTP utilise TLS (True/False)
-EMAIL_USE_SSL = False  # Si votre serveur SMTP utilise SSL (True/False)
-EMAIL_HOST_USER = 'm-cherif@leyssare.net'
-EMAIL_HOST_PASSWORD = 'eXF18Rpngtdw'
-
 #Systéme de gestion des sessions django
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_NAME = 'Site_sessionid'
