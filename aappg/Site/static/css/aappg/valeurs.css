@@ -20,14 +20,18 @@ body {
 }
 
 .heading {
-    text-align: center;
-    color: #333;
+    font-size:22px;
+    font-weight:700;
+    text-align: left;
+    color: #4c4c4c;
     margin-bottom: 20px;
 }
 
 .subheading {
-    text-align: center;
-    color: #555;
+    font-size:22px;
+    font-weight:700;
+    text-align: left;
+    color: #c4c4c4;
     margin-bottom: 20px;
 }
 
@@ -91,9 +95,13 @@ body {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .heading, .subheading {
-        font-size: 1.2em;
+        font-size: 18px;
+        font-weight:500
+        text-align:left;
     }
-
+    .subheading{
+        color:#c4c4c4;
+    }
     .accordion-button {
         font-size: 16px;
         padding: 12px;
@@ -106,7 +114,11 @@ body {
 
 @media (max-width: 480px) {
     .heading, .subheading {
-        font-size: 1em;
+        font-size: 18px;
+        font-weight:500
+    }
+     .subheading{
+        color:#c4c4c4;
     }
 
     .accordion-button {
