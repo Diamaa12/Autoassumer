@@ -102,6 +102,9 @@ input:focus{
     font-weight:700;
 
 }
+li{
+    color:red;
+}
 /* Media queries */
 
 

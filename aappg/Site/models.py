@@ -1,9 +1,10 @@
-
+import uuid
 
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, Group, PermissionsMixin
 from django.db import models
+from django.utils.crypto import get_random_string
 
 # Create your models here.
 
@@ -47,6 +48,7 @@ class AappgCustomUser(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(max_length=255, blank=False, default='Lelouma')
     poste = models.CharField(max_length=255, blank=True)
 
+
     #Gerer les groupes
     groupes = models.ManyToManyField(Group)
 
@@ -55,7 +57,11 @@ class AappgCustomUser(AbstractBaseUser, PermissionsMixin):
     #Le username obligatoire
     USERNAME_FIELD = 'email'
 
-    is_active = models.BooleanField(default=True)
+    email_verified = models.BooleanField(default=False)
+    email_verification_token = models.UUIDField(blank=True, null=True, unique=True)
+    email_verification_expiration = models.DateTimeField(default=timezone.now() + timezone.timedelta(days=1), null=True, blank=True)
+
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
@@ -68,7 +74,10 @@ class AappgCustomUser(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-
+    def is_token_expired(self):
+        if not self.email_verification_token:
+            return True
+        return timezone.now() > self.email_verification_expiration
 
 class AappgCustomGroup(models.Model):
     name = models.CharField(max_length=100, unique=True)

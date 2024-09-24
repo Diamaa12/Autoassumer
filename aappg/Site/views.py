@@ -1,5 +1,8 @@
 import datetime
+import urllib
+import uuid
 from lib2to3.fixes.fix_input import context
+from urllib.parse import urlencode
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -8,21 +11,37 @@ from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.db import IntegrityError
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.db.transaction import commit
+from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import render
 from django.contrib.auth.models import Group, Permission
+from django.utils import timezone
 from django.views.decorators.cache import cache_control
 
-from Site.forms import AappgCustomUserModelForm, AappgArticleForm, AappgArticleEditForm
+from Site.forms import AappgCustomUserModelForm, AappgArticleForm, AappgArticleEditForm, UserProfileForm
 from Site.models import AappgCustomUser, AappgCustomGroup, AappgArticlesPost
 
 
 # Create your views here.
+def test_form(request):
+    template_name = 'test.html'
+    context = {}
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            # Traiter les données du formulaire propres à l'application
+            # Par exemple, sauvegarder dans la base de données ou effectuer d'autres actions
+            return redirect('success_url')
+    else:
+        form = UserProfileForm()
+        context['form'] = form
+    return render(request, template_name=template_name, context=context)
+
 
 #Admin Inscription
-def aappg_admin_inscription(request):
+def aappg_admin_inscription_save(request):
     template_name = 'aappg_admin/inscription.html'
     context = {}
     formulaire = AappgCustomUserModelForm()
@@ -31,45 +50,60 @@ def aappg_admin_inscription(request):
         name = request.POST.get('name')
         email = request.POST.get("email")
         password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm-pass')
+        confirm_password = request.POST.get('confirm-password')
         tel = request.POST.get('tel')
         city = request.POST.get('city')
         poste = request.POST.get('poste')
 
+        #On verifie si l'email n'est pas déjá utilisé par un autre
         email_exists = AappgCustomUser.objects.filter(email=email).exists()
 
         print(name, email)
         if password == confirm_password:
             if len(password) > 5:
                 if not email_exists:
+                    email_verification_token = uuid.uuid4()
                     user = AappgCustomUser.objects.create_user(user=name,
                                                         email=email,
                                                         password=confirm_password,
                                                         telephone=tel,
                                                         city=city,
-                                                        poste=poste
+                                                        poste=poste,
+                                                        email_verification_token=email_verification_token,
                                                        )
                     if user:
+                        #On desactive certains fonctionnalité en attendant que l'email soit verifiés
+                        user.is_active = False
+                        user.is_staff = False
                         user.save()
+                        # Générer l'URL de vérification et le message
+                        token = str(user.email_verification_token)
+                        params = urlencode({'token': token})
+                        verification_url = f"{request.scheme}://{request.get_host()}/aappg/admin/verify-email/?{params}"
+                        message = f"Veuillez vérifier votre email en cliquant sur ce lien: {verification_url}"
+                        print(token, message)
+                        # Envoyer
+
+                        mail_sender = send_mail(
+                            "Verifier Votre email",
+                            message,
+                            "m-cherif@leyssare.net",
+                            [user.email,],
+                            fail_silently=False,
+                        )
+                        if mail_sender:
+                            print("l'email est envoyé avec succés. ")
+                            context['mail'] = "l'email est envoyé avec succés. "
+                        else:
+                            print("Une erreur s'est produite pendant l'envoie de mail.")
+
                         context['succes'] = 'User has bin registrer with succes'
-                        return HttpResponseRedirect(reverse('index'))
+                        return redirect('my_site:email_verification_sent')
                 else:
                     context["error"] = "L'email est déjá utilisé, veillez en choisir un autre"
 
                 #context['succes'] = 'Utilsateur crée avec succés.'
-               # mail_sender = send_mail(
-               #                     "Register",
-               #                     "votre compte est crée avec succés.",
-               #                     "m-cherif@leyssare.net",
-               #                     [f"{email}"],
-               #                     fail_silently=False,
-               #                     )
-               # if mail_sender:
-               #     print("l'email est envoyé avec succés. ")
-               #     context['mail'] = "l'email est envoyé avec succés. "
-               # else:
-               #     print("Une erreur s'est produite pendant l'envoie de mail.")
-               #     pass
+
                 #pdf = pdf_generator()
                 #context['pdf'] = pdf
 
@@ -85,7 +119,137 @@ def aappg_admin_inscription(request):
     context['form'] = formulaire
     return render(request, template_name=template_name, context=context)
 
+# views.py
 
+def aappg_admin_inscription_backup(request):
+    template_name = 'aappg_admin/inscription.html'
+    context = {}
+    if request.method == 'POST':
+        formulaire = AappgCustomUserModelForm(request.POST)
+        if formulaire.is_valid():
+            user = AappgCustomUser(
+                user=formulaire.cleaned_data['user'],
+                email=formulaire.cleaned_data['email'],
+                password=formulaire.cleaned_data['password'],
+                telephone=formulaire.cleaned_data['telephone'],
+                city=formulaire.cleaned_data['city'],
+                poste=formulaire.cleaned_data['poste']
+            )
+            user.save()
+            # Générer l'URL de vérification et le message
+            token = user.email_verification_token
+            params = urlencode({'token': token})
+            verification_url = f"{request.scheme}://{request.get_host()}/aappg/admin/verify-email/?{params}"
+            message = f"Veuillez vérifier votre email en cliquant sur ce lien: {verification_url}"
+            print(token, message)
+            # Envoyer l'email de vérification
+            mail_sender = send_mail(
+                "Vérifiez votre email",
+                message,
+                "m-cherif@leyssare.net",
+                [user.email],
+                fail_silently=False,
+            )
+            if mail_sender:
+                context['mail'] = "L'email a été envoyé avec succès."
+            else:
+                context['error'] = "Une erreur s'est produite pendant l'envoi de l'email."
+
+            context['success'] = "L'utilisateur a été enregistré avec succès."
+            return redirect('my_site:email_verification_sent')
+        else:
+            context['form'] = formulaire
+            print(context.values())
+    else:
+        formulaire = AappgCustomUserModelForm()
+
+    context['form'] = formulaire
+    return render(request, template_name, context)
+
+
+def aappg_admin_inscription(request):
+    template_name = 'aappg_admin/inscription.html'
+    context = {}
+    if request.method == 'POST':
+        formulaire = AappgCustomUserModelForm(request.POST)
+        if formulaire.is_valid():
+            user = formulaire.save(commit=False)
+            user.is_active = False  # Désactiver l'utilisateur jusqu'à ce qu'il vérifie son email
+            user.is_staff = False
+            #On ajoute le token de verification d'email et son expiration,
+            #On hash le mot de passe avant de le sauvgarder.
+            user.email_verification_token = uuid.uuid4()
+            user.email_verification_expiration = timezone.now() + timezone.timedelta(days=2)
+            user.set_password(formulaire.cleaned_data['password'])
+            user.save()
+            # Générer l'URL de vérification et le message
+            token = str(user.email_verification_token)
+            params = urlencode({'token': token})
+            #verification_url = f"{request.scheme}://{request.get_host()}/aappg/admin/verify-email/?{params}"
+            verification_url = request.build_absolute_uri(
+                reverse('my_site:verify-email', kwargs={'token': user.email_verification_token})
+            )
+            message = f"Veuillez vérifier votre email en cliquant sur ce lien: {verification_url}"
+            print(token, message)
+            # Envoyer l'email de vérification
+            mail_sender = send_mail(
+                "Vérifiez votre email",
+                message,
+                "m-cherif@leyssare.net",
+                [user.email],
+                fail_silently=False,
+            )
+            if mail_sender:
+                context['mail'] = "L'email a été envoyé avec succès."
+            else:
+                context['error'] = "Une erreur s'est produite pendant l'envoi de l'email."
+
+            context['success'] = "Un email de confirmation a été envoyé. Veuillez vérifier votre email."
+            return redirect('my_site:email_verification_sent')
+        else:
+            context['form'] = formulaire
+            print(context.values())
+    else:
+        formulaire = AappgCustomUserModelForm()
+
+    context['form'] = formulaire
+    return render(request, template_name, context)
+
+
+def email_verification_sent(request):
+    template_name = 'aappg_admin/email_verification_sent.html'
+    return render(request, template_name=template_name)
+#Verification d'email
+# views.py
+def email_verified_success(request):
+    template_name = 'aappg_admin/email_verification_success.html'
+    context = {}
+    return render(request, template_name=template_name)
+def email_verification(request, token):
+    # Vérifiez que le token est bien passé dans l'URL
+    if not token:
+        return HttpResponse("Token manquant.", status=400)
+
+    user = get_object_or_404(AappgCustomUser, email_verification_token=token)
+
+    template_name = 'aappg_admin/email_verification_success.html'
+    context = {}
+
+    if user.is_token_expired():
+        context['error'] = "Le lien de vérification a expiré."
+        user.email_verification_token = None
+        user.email_verification_expiration = None
+    else:
+        # Activer l'utilisateur et marquer l'email comme vérifié
+        user.is_active = True
+        user.is_staff = True
+        user.email_verified = True
+
+        user.save()  # Sauvegarder les modifications
+        context['success'] = "Votre email a été vérifié avec succès. Vous pouvez maintenant vous connecter."
+        #return redirect('my_site:success_email_verification')
+
+    return render(request, template_name=template_name, context=context)
 
 #Admin connexion
 

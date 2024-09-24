@@ -7,12 +7,14 @@ from .views import test, index, aappg_donate, aappg_actualites, aappg_le_mouveme
     aappg_home, aappg_tv, aappg_admin_inscription, aappg_admin_connexion, aappg_admin_page, logout_view, \
     aappg_articles_edit, \
     articles_poster, aappg_news, article_detail, modify_article, custom_permission_denied_view, article_list, \
-    delete_articles, aappg_valeurs, aappg_chartes, aappg_reglement, pagination_test
+    delete_articles, aappg_valeurs, aappg_chartes, aappg_reglement, pagination_test, email_verification_sent, \
+    email_verification, test_form, email_verified_success
 
 app_name = 'my_site'
 urlpatterns = [
 
     path('test/', test, name='test'),
+    path('test-form/', test_form, name='test_form'),
     path('pagination-test/', pagination_test, name='pagination_test'),
 
     path('index/', index, name='index'),
@@ -33,6 +35,10 @@ urlpatterns = [
     path('admin-connexion', aappg_admin_connexion, name='admin-connexion'),
     path('admin-deconnexion', logout_view, name='logout'),
     path('admin-page', aappg_admin_page, name='admin-page'),
+
+    path('email-verification-sent/', email_verification_sent, name='email_verification_sent'),
+    path('verify-email/<uuid:token>/', email_verification, name='verify-email'),
+    path('success_email_verification', email_verified_success, name='success_email_verification'),
 
     path('articles-edit', aappg_articles_edit, name='articles-edit'),
     path('articles-publier', articles_poster, name='articles-publier'),

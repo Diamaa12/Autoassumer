@@ -3,14 +3,15 @@ from PIL import Image
 
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, EmailValidator, RegexValidator
 from django.forms import ModelForm
 from django import forms
+import re
 
 from Site.models import AappgCustomUser, AappgArticlesPost
 
 
-class AappgCustomUserModelForm(UserCreationForm):
+class AappgCustomUserModelForm_backup(UserCreationForm):
     class Meta:
         model = AappgCustomUser
         fields = ('user',
@@ -20,6 +21,25 @@ class AappgCustomUserModelForm(UserCreationForm):
                   'city',
                   'poste',
                   )
+
+
+class AappgCustomUserModelForm_save(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = AappgCustomUser
+        fields = ('user', 'email', 'password', 'telephone', 'city', 'poste',)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password != confirm_password:
+            raise forms.ValidationError("Les mots de passe ne correspondent pas.")
+
+        return cleaned_data
 
 class AappgArticleForm(ModelForm):
     MAX_IMAGE_SIZE = 5 * 1024 * 1024  # Extracted a constant for max image size
@@ -128,3 +148,199 @@ class AappgArticleEditForm(forms.ModelForm):
             if not url.startswith(('http://', 'https://')):
                 raise forms.ValidationError('L’URL doit commencer par http:// ou https://')
         return url
+
+
+class AappgCustomUserModelForm(forms.ModelForm):
+    class Meta:
+        model = AappgCustomUser
+        fields = ('user',
+                  'email',
+                  'password',
+                  'telephone',
+                  'city',
+                  'poste',
+                  )
+    user = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'user-id',
+            'name': 'user',
+            'placeholder': 'Votre prénom & nom '
+        })
+    )
+    email = forms.EmailField(
+        validators=[EmailValidator(message="Please enter a valid email address.")],
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'email-id',
+            'name': 'email',
+            'placeholder': 'Votre mail '
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'password-id',
+            'name': 'password',
+            'placeholder': 'Mot de passe '
+        }),
+        required=True,
+        min_length=6,
+        max_length=100
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'confirm-pass',
+            'name': 'confirm-pass',
+            'placeholder': 'Repeat password '
+        }),
+        required=True,
+        min_length=6,
+        max_length=100
+    )
+    telephone = forms.CharField(
+        max_length=15,
+        required=True,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                   message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")],
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'telephone-id',
+            'name': 'telephone',
+            'placeholder': 'Votre numéro de Tél'
+        })
+    )
+    city = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'city-id',
+            'name': 'city',
+            'placeholder': 'Ville '
+        })
+    )
+    poste = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'poste-id',
+            'name': 'poste',
+            'placeholder': 'Le poste que vous occupez  '
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        #S'assurer que l'email entré est disponible, et n'a pas été encore pris
+        if AappgCustomUser.objects.filter(email=email).exists():
+            raise ValidationError("Cet email est déjà utilisé, veillez-en choisir un autre.")
+        # Regular expression for validating an email
+        regex = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'
+
+        # Check if email matches the regex
+        if not re.match(regex, email):
+            raise forms.ValidationError("Entrez un email au format valide.")
+
+        return email
+
+    def clean_telephone(self):
+        telephone = self.cleaned_data.get('telephone')
+        if not telephone.startswith('+'):
+            raise forms.ValidationError("Le numéro de téléphone doit commencer par '+'.")
+        return telephone
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password and confirm_password:
+            if password != confirm_password:
+                raise forms.ValidationError("Les mots de passe ne correspond pas.")
+            if len(password) < 5:
+                raise forms.ValidationError("Le mot de passe doit comporter au moins 8 caractères")
+
+        return cleaned_data
+
+class UserProfileForm(forms.Form):
+    user = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'user-id',
+            'name': 'user',
+            'placeholder': 'Votre prenom & nom '
+        })
+    )
+    email = forms.EmailField(
+        validators=[EmailValidator(message="Please enter a valid email address.")],
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'email-id',
+            'name': 'email',
+            'placeholder': 'Votre mail '
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'password-id',
+            'name': 'password',
+            'placeholder': 'Mot de passe '
+        }),
+        required=True,
+        min_length=6,
+        max_length=100
+    )
+    telephone = forms.CharField(
+        max_length=15,
+        required=True,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                   message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")],
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'telephone-id',
+            'name': 'telephone',
+            'placeholder': 'Votre numéro de Tél'
+        })
+    )
+    city = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'city-id',
+            'name': 'city',
+            'placeholder': 'Ville '
+        })
+    )
+    poste = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'text-field w-input"',
+            'id': 'poste-id',
+            'name': 'poste',
+            'placeholder': 'Le poste que vous occupez  '
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if "example.com" not in email:
+            raise forms.ValidationError("We only accept emails from 'example.com' domain.")
+        return email
+
+    def clean_telephone(self):
+        telephone = self.cleaned_data.get('telephone')
+        if not telephone.startswith('+'):
+            raise forms.ValidationError("Phone number must start with a '+'.")
+        return telephone

@@ -23,34 +23,64 @@
 
 
         <div class="container_form">
-            {% if error %}
-           <p style="color:red; font-weight:700;">{{error}}</p>
-        {% endif %}
-           <form method='POST' action="{% url 'my_site:admin-inscription' %}" id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="66ad640bd6bbcd6403d43ac9" data-wf-element-id="1566d24a-14d0-168f-80b4-60786f2bcf97">
-              {% csrf_token %}
-               <div class="form-field-wrapper"><label for="name" class="field-label">Prenom & Nom <span class="required">*</span></label><br><input class="text-field error w-input" maxlength="256" name="name" wr-type="required-field" data-name="Name" placeholder="Votre Prenom & Nom" type="text" id="name">
+            <div class="error-message">
+                {% if form.non_field_errors %}
+                <ul>
+                    <li>Veuillez corriger les erreurs du formulaire ci-dessous.</li>
+                </ul>
+                {% endif %}
+            </div>
 
-              </div>
-              <div class="form-field-wrapper"><label for="email" class="field-label">Email Address <span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="email" wr-type="required-field" data-name="Email" placeholder="Votre Email" type="email" id="email">
+            <form method='POST' action="{% url 'my_site:admin-inscription' %}" id="email-form" name="email-form" data-name="Email Form" class="form" data-wf-page-id="66ad640bd6bbcd6403d43ac9" data-wf-element-id="1566d24a-14d0-168f-80b4-60786f2bcf97">
 
-              </div>
-              <div class="form-field-wrapper"><label for="password" class="field-label">Créer votre mot de passe <span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="password" wr-type="required-field" data-name="Password" placeholder="Taper le mot de passe" type="password" id="password">
+            {% csrf_token %}
+            <div class="form-field-wrapper">
+                <label class="field-label" for="name">Prénom & Nom <span class="required">*</span></label><br/>
+                {{ form.user }}
+                <p style="color:red;">{{ form.user.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="email">Email Address <span class="required">*</span></label><br/>
+                {{ form.email }}
+                <p style="color:red;">{{ form.email.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="password">Créer votre mot de passe <span class="required">*</span></label><br/>
+                {{ form.password }}
+                <p style="color:red;">{{ form.password.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                  <label for="confirm-pass" class="field-label">Confirmer le mot de passe<span class="required">*</span></label><br>
+                  {{form.confirm_password}}
+                 {% if form.non_field_errors %}
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                        <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
 
-              </div>
-              <div class="form-field-wrapper"><label for="confirm-pass" class="field-label">Confirmer le mot de passe<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="confirm-pass" wr-type="required-field" data-name="Confirm-pass" placeholder="Retaper le mot de passe" type="password" id="confirm-pass">
-
-              </div>
-
-              <div class="form-field-wrapper"><label for="poste" class="field-label">Numéro de Téléphone<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="tel" data-name="Question" placeholder="Téléphone number" type="text" id="tel"></div>
-
-              <div class="form-field-wrapper"><label for="poste" class="field-label">Votre ville de résidence actuelle<span class="required">*</span></label><br><input class="text-field w-input" maxlength="256" name="city" data-name="Question" placeholder="Ville de résidence" type="text" id="city"></div>
-              <div class="form-field-wrapper"><label for="poste" class="field-label">Optionel<br> Donnez le titre que vous occupez au sain de l'AAPPG</label><br><input class="text-field w-input" maxlength="256" name="poste" data-name="Question" placeholder="Poste occupé au sein de l'AAPG" type="text" id="poste"></div>
-
-              <div class="form-field-wrapper"><label for="submit">Confirmer l'envoie du formlaire</label><br><input type="submit" value="Envoyer" name="envoyer" class="envoyer" id="submit"></div>
-            </form>
-
-        </div>
-      </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="tel">Numéro de Téléphone<span class="required">*</span></label><br/>
+                {{ form.telephone }}
+                <p style="color:red;">{{ form.telephone.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="city">Votre ville de résidence actuelle<span class="required">*</span></label><br/>
+                {{ form.city }}
+                <p style="color:red;">{{ form.city.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="poste">(Optionnel)<br/> Donnez le titre que vous occupez au sain de l'AAPPG</label><br/>
+                {{ form.poste }}
+                <p style="color:red;">{{ form.poste.errors }}</p>
+            </div>
+            <div class="form-field-wrapper">
+                <label class="field-label" for="submit">Confirmer l'envoie du formulaire</label><br><input type="submit" value="Envoyer" name="envoyer" class="envoyer" id="submit"/>
+            </div>
+         </div>
+       </div>
     </section>
 
 </body>

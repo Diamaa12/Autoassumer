@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<style>
+/* Conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Conteneur items */
+.container_items  {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Messages d'alerte */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Style pour succès et erreur */
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+/* Liens */
+.link {
+    margin-top: 10px;
+}
+
+.lien {
+    color: #337ab7;
+    text-decoration: underline;
+}
+
+/* Styles responsives */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        width: 100%;
+    }
+}
+</style>
+<body>
+    <div class="container">
+    <div class="container_items">
+        {% if success %}
+        <div class="alert alert-success">
+            <h4>{{success}}</h4>
+            <div class="link">
+                Cliquez <a href="{% url 'my_site:admin-connexion'%}" class="lien">sur ce lien, </a>pour vous connecter à votre espace membres
+            </div>
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="alert alert-error">
+            <h4>{{error}}</h4>
+            <div class="link">
+                Cliquez <a href="{% url 'my_site:admin-inscription'%}" class="lien">sur ce lien, </a>pour retourner à la page d'inscription.
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
