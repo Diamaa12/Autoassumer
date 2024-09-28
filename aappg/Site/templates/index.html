@@ -1,5 +1,31 @@
 {% load static %}
 {% include 'header.html'%}
+<style>
+      .heading-24{
+        text-align:left;
+        font-size:22px;
+        color:#244c8d;
+      }
+      .texte {
+            overflow: hidden;
+            transition: max-height 1s ease;
+            max-height: 50px; /* Hauteur initiale pour les premiers mots */
+        }
+        .texte.expanded {
+            max-height: 300px; /* Une grande hauteur pour le mode "expansé" */
+        }
+        .toggleText {
+            font-size:12px;
+            font-weight:500;
+            background:#4563cf;
+            color:white;
+            margin-top: 10px;
+            padding:5px;
+            box-shadow:0px 0px 4px 1px grey;
+            text-decoration:none;
+            border-radius:4px;
+        }
+</style>
   <section class="section_body">
     <div data-w-id="ef5b070b-bd4f-da03-d22f-31f830929dc2" style="opacity:0" class="w-layout-blockcontainer body_container w-container">
       <div class="w-layout-vflex vertical_flex_1">
@@ -97,24 +123,37 @@
     </div>
     <div data-w-id="d372cd19-df28-366b-ac48-194a82b1e203" style="opacity:0" class="w-layout-blockcontainer body_container2 w-container">
       <div class="w-layout-vflex flex-block-3">
-        <h1 class="heading-24">Pourquoi rejoindre AAPPG ?</h1>
+        <h3 class="heading-24">Les trois mots que chaque être humain digne de lui, devrait porter dans son coeur</h3>
         <div class="w-layout-vflex flex-block-2">
           <div class="frame-19">
             <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407">
-              <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407 error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">S&#x27;engager</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">dans l&#x27;action pour faire partager des
-                  convictions et des valeurs d&#x27;un mouvement juste, à
-                  l&#x27;écoute de tous.</span></div>
+              <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407 error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Unité</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">
+                <p class="texte">
+                    Forts de notre engagement militant pour la paix et l’unitéde nos peuples,
+                  nous croyons profondément que l’unité est l’élément fondamental sur lequel repose l’avenir de notre Nation.
+                  Grâce à l’unité, nous pouvons améliorer les conditions de vie de millions de personnes dans un esprit de fraternité,
+                  d’entraide et de solidarité.
+
+
+                </p>
+                <button class="toggleText">Lire la suite</button>
+              </span></div>
             </div>
           </div>
           <div class="frame-19">
-            <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Participer</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">au processus démocratique de conception de nos idées, en étant réellement écouté.</span></div>
+            <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Dignité</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">
+              <p class="texte">Conscients de nos origines, nous sommes fiers de nos ancêtres qui nous ont transmis des valeurs d’honnêteté,
+                de justice et d’égalité. Nous regroupons toutes ces valeurs héritées de nos ancêtres sous un mot : la</p>
+              <button class="toggleText">Lire la suite</button>
+            </span></div>
           </div>
           <div class="frame-19">
-            <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Agir</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">au sein d&#x27;une équipe engagée, sur le terrain ou les réseaux sociaux.</span></div>
+            <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Fierté</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">
+              <p class="texte">Nous estimons qu’un être humain doté de dignité peut inspirer des millions d’autres sur le chemin de la rédemption.</p>
+              <button class="toggleText">Lire la suite</button>
+            </span></div>
           </div>
-          <div class="frame-19">
-            <div class="error-6f55734b-b5f4-7509-7824-b82c209e8407"><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-0">Décider</span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-1"> </span><span class="sengager-dans-laction-pour-faire-partager-des-convictions-et-des-valeurs-dun-parti-juste-l-coute-de-tous-2">qui nous représentera demain, responsables du Parti et candidats.</span></div>
-          </div>
+
           <a href="{% url 'my_site:adherer'%}#adherant" class="button-25 w-button">JE SUIS UN ASSUMER J&#x27;ADHÈRE</a>
         </div>
       </div>
@@ -195,6 +234,49 @@
         });
     });
 });
+
+  //script lire la suite
+
+   function toggleText(event) {
+            const button = event.target; // Récupérer le bouton cliqué
+            const paragraph = button.previousElementSibling; // Récupérer le paragraphe précédent le bouton
+
+            if (!paragraph.classList.contains("expanded")) {
+                // Montrer le texte complet
+                paragraph.classList.add("expanded");
+                paragraph.textContent = paragraph.getAttribute("data-fulltext");
+                button.textContent = "Lire moins";
+                console.log("Texte complet affiché");
+            } else {
+                // Raccourcir le texte
+                paragraph.classList.remove("expanded");
+                const text = paragraph.getAttribute("data-fulltext");
+                const words = text.split(' ');
+                const visibleText = words.slice(0, 10).join(' ') + '...';
+                paragraph.textContent = visibleText;
+                button.textContent = "Lire la suite";
+                console.log("Texte raccourci");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.texte').forEach(paragraph => {
+                paragraph.setAttribute("data-fulltext", paragraph.textContent.trim());
+                paragraph.dataset.expanded = "false"; // Initialiser comme raccourci
+
+                // Raccourcir le texte au chargement de la page
+                const text = paragraph.getAttribute("data-fulltext");
+                const words = text.split(' ');
+                const visibleText = words.slice(0, 10).join(' ') + '...';
+                paragraph.textContent = visibleText;
+                console.log(paragraph);
+            });
+
+            // Ajouter un écouteur d'événements à chaque bouton avec la classe 'toggleText'
+            document.querySelectorAll('.toggleText').forEach(button => {
+                button.addEventListener('click', toggleText);
+            });
+        });
 
 </script>
  {% include 'footer.html'%}

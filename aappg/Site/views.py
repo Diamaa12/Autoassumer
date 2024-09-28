@@ -529,7 +529,7 @@ def modify_article(request, pk):
 def delete_articles(request, post_id):
     template_name = 'articles/delete_article.html'
     context={}
-    if not request.user.is_superuser:
+    if not request.user.is_staff:
         return HttpResponseForbidden("You are not authorized to delete this post.")
 
     article = get_object_or_404(AappgArticlesPost, id=post_id)

@@ -1,6 +1,26 @@
 {% include '../header.html'%}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/aappg/statuts.css'%}">
+    <style>
+       .texte {
+            overflow: hidden;
+            transition: max-height 0.9s ease;
+            max-height: 50px; /* Hauteur initiale pour les premiers mots */
+        }
+        .texte.expanded {
+            max-height: 300px; /* Une grande hauteur pour le mode "expansé" */
+        }
+        .toggleText {
+            background:#4563cf;
+            color:white;
+            margin-top: 10px;
+            padding:5px;
+            box-shadow:0px 0px 4px 0px grey;
+            text-decoration:none;
+            border-radius:4px;
+        }
+    </style>
+
   <section id="statuts">
     <div class="w-layout-blockcontainer w-container">
       <div class="contenues">
@@ -11,12 +31,15 @@
         <div class="accordion-item">
             <button class="accordion-button">*Unité</button>
             <div class="accordion-content">
-                <p>Forts de notre engagement militant pour la paix et l’unité
-de nos peuples, nous croyons profondément que l’unité est
-l’élément fondamental sur lequel repose l’avenir de notre Nation.
-Grâce à l’unité, nous pouvons améliorer les conditions de vie de
-millions de personnes dans un esprit de fraternité, d’entraide et de
-solidarité.</p>
+                <p>
+                    <span class="visible-text">Forts de notre engagement militant pour la paix et l’unité
+                        de nos peuples, nous croyons profondément que l’unité est
+                        l’élément fondamental sur lequel repose l’avenir</span>
+                    <span class="read-morebtn" onclick="toggleText()">Lire la suite</span>
+                    <span class="more-text">de notre Nation.
+                        Grâce à l’unité, nous pouvons améliorer les conditions de vie de
+                        millions de personnes dans un esprit de fraternité, d’entraide et desolidarité.</span>
+                </p>
             </div>
         </div>
         <div class="accordion-item">
@@ -39,23 +62,38 @@ inspirer des millions d’autres sur le chemin de la rédemption</p>
       </div>
       <div class="list_a_puces">
         <ul class="list-group">
-          <li class="list-group-item active">Unité<br/><p class="list_items">Forts de notre engagement militant pour la paix et l’unité
-de nos peuples, nous croyons profondément que l’unité est
-l’élément fondamental sur lequel repose l’avenir de notre Nation.
-Grâce à l’unité, nous pouvons améliorer les conditions de vie de
-millions de personnes dans un esprit de fraternité, d’entraide et de
-solidarité.</p></li>
-          <li class="list-group-item active">Dignité<br/><p class="list_items">Conscients de nos origines, nous sommes fiers de nos
+          <li class="list-group-item active">Unité<br/>
+              <p class="texte">
+
+                    <span class="visible-text">Forts de notre engagement militant pour la paix et l’unité
+                        de nos peuples, nous croyons profondément que l’unité est
+                        l’élément fondamental sur lequel repose l’avenir</span>
+                    <span class="more-text">de notre Nation.
+                        Grâce à l’unité, nous pouvons améliorer les conditions de vie de
+                        millions de personnes dans un esprit de fraternité, d’entraide et desolidarité.</span>
+                    <span class="read-more-btn" onclick=""><a>Lire la suite</a></span>
+
+            </p>
+            <button class="toggleText">Lire la suite</button>
+          </li>
+          <li class="list-group-item active">Dignité<br/>
+              <p class="texte">Conscients de nos origines, nous sommes fiers de nos
 ancêtres qui nous ont transmis des valeurs d’honnêteté, de justice
 et d’égalité. Nous regroupons toutes ces valeurs héritées de nos
-ancêtres sous un mot : la</p></li>
-          <li class="list-group-item active">Fierté</br><p class="list_items">Nous estimons qu’un être humain doté de dignité peut
-inspirer des millions d’autres sur le chemin de la rédemption</p></li>
+ancêtres sous un mot : la</p>
+          <button class="toggleText">Lire la suite</button>
+          </li>
+          <li class="list-group-item active">Fierté</br>
+              <p class="texte">Nous estimons qu’un être humain doté de dignité peut
+inspirer des millions d’autres sur le chemin de la rédemption</p>
+              <button class="toggleText">Lire la suite</button>
+          </li>
         </ul>
       </div>
     </div>
   </section>
 <script>
+    //Gestion de liste deroulante cliquable.
   document.addEventListener("DOMContentLoaded", function() {
     const accordionButtons = document.querySelectorAll('.accordion-button');
 
@@ -75,6 +113,45 @@ inspirer des millions d’autres sur le chemin de la rédemption</p></li>
         });
     });
 });
+   function toggleText(event) {
+            const button = event.target; // Récupérer le bouton cliqué
+            const paragraph = button.previousElementSibling; // Récupérer le paragraphe précédent le bouton
 
+            if (!paragraph.classList.contains("expanded")) {
+                // Montrer le texte complet
+                paragraph.classList.add("expanded");
+                paragraph.textContent = paragraph.getAttribute("data-fulltext");
+                button.textContent = "Lire moins";
+                console.log("Texte complet affiché");
+            } else {
+                // Raccourcir le texte
+                paragraph.classList.remove("expanded");
+                const text = paragraph.getAttribute("data-fulltext");
+                const words = text.split(' ');
+                const visibleText = words.slice(0, 10).join(' ') + '...';
+                paragraph.textContent = visibleText;
+                button.textContent = "Lire la suite";
+                console.log("Texte raccourci");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.texte').forEach(paragraph => {
+                paragraph.setAttribute("data-fulltext", paragraph.textContent.trim());
+                paragraph.dataset.expanded = "false"; // Initialiser comme raccourci
+
+                // Raccourcir le texte au chargement de la page
+                const text = paragraph.getAttribute("data-fulltext");
+                const words = text.split(' ');
+                const visibleText = words.slice(0, 10).join(' ') + '...';
+                paragraph.textContent = visibleText;
+                console.log(paragraph);
+            });
+
+            // Ajouter un écouteur d'événements à chaque bouton avec la classe 'toggleText'
+            document.querySelectorAll('.toggleText').forEach(button => {
+                button.addEventListener('click', toggleText);
+            });
+        });
 </script>
   {% include '../footer.html'%}

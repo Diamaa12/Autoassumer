@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
@@ -47,4 +47,41 @@ body {
     padding: 15px 0;
     margin: 0;
     color:rgb(61, 56, 70);
+}*/
+ /* Styles pour cacher la partie "cachée" du texte
+    .more-text {
+        display: none;
+    }
+
+     Style du bouton "Lire la suite"
+    .read-more-btn {
+        color: blue;
+        cursor: pointer;
+        font-weight: bold;
+    }*/
+    .paragraph-container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+#texte {
+    overflow: hidden;
+}
+
+#texte[data-expanded="false"] {
+    display: inline;
+}
+
+#texte[data-expanded="true"] {
+    display: inline;
+}
+
+.hidden {
+    display: none;
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }

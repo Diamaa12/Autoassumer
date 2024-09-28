@@ -46,7 +46,7 @@
           <div class="update_date">{{article.updated_at}}</div>
         </div>
         <a class="article_update" href="{% url 'my_site:modify_article' article.id %} ">Modifiez l&#x27;article</a>
-        {% if user.is_superuser %}
+        {% if user.is_staff %}
            <a class="article_update" href="{% url 'my_site:delete_article' article.id %} ">Supprimer cet article </a>
         {% endif %}
        </div>
