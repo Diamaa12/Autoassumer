@@ -9,10 +9,15 @@
 <body>
     <div class="container">
         <div class="principal">
-            <h2>Bienvenue dans la page d'édition d'articles. </h2>
+            <h2>Bienvenue sur la page d'édition d'articles. </h2>
               <form class="form-control" method="post" action="{% url 'my_site:articles-edit' %}" enctype="multipart/form-data">
                     {% csrf_token %}
 
+                   <div class="form-group">
+                        {{ form.category.label_tag }}
+                        {{ form.category }}
+                        <p style="color:red;">{{ form.category.errors }}</p>
+                    </div>
                     <div class="form-group">
                         {{ form.title.label_tag }}
                         {{ form.title }}
@@ -26,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                        {{ form.image.label_tag }} uploader une image d'illustration
+                        {{ form.image.label_tag }} Uploader une image d'au moins 500x400px
                         {{ form.image }}
                         {% if form.image.errors %}
                             <p class="error">{{ form.image.errors }}</p>

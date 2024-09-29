@@ -43,7 +43,10 @@ class AappgCustomUserModelForm_save(forms.ModelForm):
 
 class AappgArticleForm(ModelForm):
     MAX_IMAGE_SIZE = 5 * 1024 * 1024  # Extracted a constant for max image size
-
+    category = forms.ChoiceField(
+        choices=AappgArticlesPost.CATEGORY_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control', 'aria-label': 'Selectionnez un category'})
+    )
     title = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titre de l\'article ici'}),
         required=True
@@ -62,7 +65,7 @@ class AappgArticleForm(ModelForm):
     )
 
     class Meta:
-        fields = ['title', 'content', 'image', 'video']
+        fields = ['category', 'title', 'content', 'image', 'video']
         model = AappgArticlesPost
 
     def __init__(self, *args, **kwargs):

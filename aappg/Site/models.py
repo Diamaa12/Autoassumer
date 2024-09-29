@@ -85,6 +85,17 @@ class AappgCustomGroup(models.Model):
 
 #Gestions d'articles du site
 class AappgArticlesPost(models.Model):
+    CATEGORY_CHOICES = [
+        ('politique', 'Politique'),
+        ('societe', 'Société'),
+        ('economie', 'Économie'),
+        ('guinee', 'Guinée'),
+        ('diaspora', 'Diaspora'),
+        ('communaute', 'Communauté'),
+        ('histoire', 'Histoire'),
+    ]
+
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='politique')
     title = models.CharField(max_length=200)
     content = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True, null=True)

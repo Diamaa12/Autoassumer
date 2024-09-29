@@ -127,6 +127,16 @@ SESSION_COOKIE_HTTPONLY = True
 #Pour prolonger le temps si l'utilisateur reste actif sur le site.
 SESSION_SAVE_EVERY_REQUEST = True
 
+#Gestion de server mail
+EMAIL_HOST = 'smtp.ionos.de'
+EMAIL_PORT = 587 #Port smtp sortant
+EMAIL_USE_TLS = True  # Si votre serveur SMTP utilise TLS (True/False)
+EMAIL_USE_SSL = False  # Si votre serveur SMTP utilise SSL (True/False)
+EMAIL_HOST_USER = 'm-cherif@leyssare.net'
+EMAIL_HOST_PASSWORD = 'eXF18Rpngtdw'
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 

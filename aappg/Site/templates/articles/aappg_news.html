@@ -14,12 +14,37 @@
 
 
     <link rel="stylesheet" href="{% static 'css/aappg_news/aappg_news_paginate.css'%}">
+<style>
+     .video.w-video.w-embed{
+        background:rgb(223, 222, 219);
+        min-width:400px;
+        min-height:300px;
+        display:flex;
+        justify-content:center:
+        align-items:center;
+     }
+     .responsive-image {
+             max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;  /* Assurer que l'image est un bloc pour l'utiliser avec margin auto */
+            margin-left: auto; /* Centrer horizontalement */
+            margin-right: auto; /* Centrer horizontalement */
+        }
+
+</style>
   <section class="section_principale" id="aappg_news">
     <div class=" container_motter w-container" id="container_mutter">
       <div class="news_container1">
         <div class="ms_container_left">
             {% if newest_posts %}
-          <div style="padding-top:56.17021276595745%" class="video w-video w-embed"><iframe class="embedly-embed" src="{{newest_posts.video}}" width="940" height="528" scrolling="no" allowfullscreen="" title="Les 10 Erreurs à Éviter Lors de la création de votre site web"></iframe></div>
+          <div style="" class="video w-video w-embed">
+              {% if newest_posts.video%}
+                <iframe class="embedly-embed" src="{{newest_posts.video}}" width="940" height="528" scrolling="no" allowfullscreen="" title="Les 10 Erreurs à Éviter Lors de la création de votre site web"></iframe>
+              {% else %}
+              <img class="responsive-image" src="{{newest_posts.image.url}}" alt="imageillustration">
+              {% endif %}
+          </div>
           <h3 class="heading-38">{{newest_posts.title}}</h3>
           <p>{{newest_posts.content}}</p>
             {% endif %}

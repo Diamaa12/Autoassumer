@@ -492,9 +492,11 @@ def article_detail(request, id):
     #Recupération ID de l'article pour le trasferer via l'url
     # Recupération du contenue de AappgArticlePost lié à l'url trasmis
     article = get_object_or_404(AappgArticlesPost, id=id)
+    context['category'] = article.category
     context['title'] = article.title
     context['content'] = article.content
     context['video'] = article.video
+    context['image'] = article.image
     context['created_at'] = article.created_at
     context['author'] = article.author
 

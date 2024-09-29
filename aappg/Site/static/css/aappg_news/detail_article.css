@@ -98,6 +98,8 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
+  justify-content:center;
+  align-items:center;
   margin-bottom:20px;
   box-shadow: 0 2px 5px 1px #0000001f;
   background-color:ffffff;
@@ -122,8 +124,15 @@ body {
   text-decoration: none;
   display: flex;
   color:#4c4c4c;
+  padding-bottom:10px;
+  margin-bottom:10px;
+  margin-right:auto;
 }
-
+.w-embed-youtubevideo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 .home_link {
   color: #5f5e5e;
   font-family: Inter, sans-serif;
