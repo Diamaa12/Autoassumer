@@ -8,7 +8,7 @@ from django.forms import ModelForm
 from django import forms
 import re
 
-from Site.models import AappgCustomUser, AappgArticlesPost
+from Site.models import AappgCustomUser, AappgArticlesPost, AappgCommunique
 
 
 class AappgCustomUserModelForm_backup(UserCreationForm):
@@ -347,3 +347,37 @@ class UserProfileForm(forms.Form):
         if not telephone.startswith('+'):
             raise forms.ValidationError("Phone number must start with a '+'.")
         return telephone
+class AappgCommuniqueForm(forms.ModelForm):
+    class Meta:
+        model = AappgCommunique
+        fields = ['titre', 'content']  # Champs à afficher dans le formulaire
+        widgets = {
+            'titre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Entrez le titre ici',
+                'maxlength': '50',  # Respecter la contrainte max_length du modèle
+                'required':'True',
+            }),
+            'content': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Entrez le contenu ici',
+                'rows': 10,
+                'required':'true',
+            }),
+        }
+
+    def clean_titre(self):
+        """Valider que le titre n'est pas vide et respecte les contraintes du modèle."""
+        titre = self.cleaned_data.get('titre')
+        if not titre:
+            raise ValidationError("Le titre ne peut pas être vide.")
+        if len(titre) > 50:
+            raise ValidationError("Le titre ne peut pas dépasser 50 caractères.")
+        return titre
+
+    def clean_content(self):
+        """Valider que le contenu n'est pas vide."""
+        content = self.cleaned_data.get('content')
+        if not content:
+            raise ValidationError("Le contenu ne peut pas être vide.")
+        return content

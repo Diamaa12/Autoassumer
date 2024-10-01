@@ -2,6 +2,7 @@ import datetime
 import urllib
 import uuid
 from lib2to3.fixes.fix_input import context
+from tempfile import template
 from urllib.parse import urlencode
 
 from django.contrib.auth import authenticate, login, logout
@@ -20,8 +21,9 @@ from django.contrib.auth.models import Group, Permission
 from django.utils import timezone
 from django.views.decorators.cache import cache_control
 
-from Site.forms import AappgCustomUserModelForm, AappgArticleForm, AappgArticleEditForm, UserProfileForm
-from Site.models import AappgCustomUser, AappgCustomGroup, AappgArticlesPost
+from Site.forms import AappgCustomUserModelForm, AappgArticleForm, AappgArticleEditForm, UserProfileForm, \
+    AappgCommuniqueForm
+from Site.models import AappgCustomUser, AappgCustomGroup, AappgArticlesPost, AappgCommunique
 
 
 # Create your views here.
@@ -460,6 +462,22 @@ def aappg_news(request):
     posts = AappgArticlesPost.objects.order_by('-created_at')
     context['newest_posts'] = posts.first()
     context['older_posts'] = posts[1:]
+
+    # Récupérer tous les communiqués, triés par date de création (du plus récent au plus ancien)
+    # Récupérer les 4 derniers communiqués
+    latest_communiques = AappgCommunique.objects.all().order_by('-id')[:4]
+    # Assigner à des variables distinctes
+    communique1 = latest_communiques[0] if latest_communiques.count() > 0 else None
+    communique2 = latest_communiques[1] if latest_communiques.count() > 1 else None
+    communique3 = latest_communiques[2] if latest_communiques.count() > 2 else None
+    communique4 = latest_communiques[3] if latest_communiques.count() > 3 else None
+
+    context['communique1'] = communique1
+    context['communique2'] = communique2
+    context['communique3'] = communique3
+    context['communique4'] = communique4
+
+
     #Systéme de pagination
     paginator = Paginator(posts, 8)
 
@@ -502,7 +520,20 @@ def article_detail(request, id):
 
     context['article'] = article
     return render(request, template_name, context)
+#Detail communiquer
 
+def communique_detail(request, id):
+    template_name = 'communiquer/detail_communiquer.html'
+    context = {}
+    #Recupération ID de l'article pour le trasferer via l'url
+    # Recupération du contenue de AappgArticlePost lié à l'url trasmis
+    article = get_object_or_404(AappgCommunique, id=id)
+    context['titre'] = article.titre
+    context['content'] = article.content
+    context['created_at'] = article.created_at
+    context['author'] = article.author
+
+    return render(request, template_name, context)
 @login_required
 def modify_article(request, pk):
     article = get_object_or_404(AappgArticlesPost, pk=pk)
@@ -561,3 +592,24 @@ def article_list(request):
     #on récupère le nom de l'utilsateur connecté
     context['user_name'] = request.user.user
     return render(request, template_name=templane_name, context=context)
+@login_required
+def create_communique(request):
+    template_name = 'communiquer/create_communique.html'
+    context = {}
+
+    if request.method == 'POST':
+        form = AappgCommuniqueForm(request.POST)
+        if form.is_valid():
+            communique = form.save(commit=False)  # Ne pas encore enregistrer en base
+            communique.author = request.user  # Attribuer l'utilisateur connecté comme auteur
+            communique.save()  # Enregistrer maintenant avec l'auteur
+            print('Communiquer publier avec success')
+            return redirect('my_site:news')  # Rediriger vers une page de succès après l'enregistrement
+        else:
+            print('Une erreur s est produit', form.errors)
+    else:
+        print("Resoumission du formulaire.",)
+        form = AappgCommuniqueForm()
+
+    context['form'] = form
+    return render(request, template_name, context)

@@ -95,6 +95,7 @@ class AappgArticlesPost(models.Model):
         ('histoire', 'Histoire'),
     ]
 
+    author = models.ForeignKey(AappgCustomUser, on_delete=models.CASCADE)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='politique')
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -102,7 +103,11 @@ class AappgArticlesPost(models.Model):
     video = models.URLField(blank=True, null=True)  # Stockage d'URL de vidéos (par exemple, YouTube)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(AappgCustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+class AappgCommunique(models.Model):
+    author = models.ForeignKey(AappgCustomUser, on_delete=models.CASCADE)
+    titre = models.CharField(max_length=50)
+    content = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
