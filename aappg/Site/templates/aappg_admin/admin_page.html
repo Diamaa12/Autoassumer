@@ -38,7 +38,7 @@
 </head>
 <body>
 
-  <p>Votre temps de connexion est:  <span id='countdownDisplay'></span></p>
+  <p><span id='countdownDisplay'></span> Secondes, avant la fin de session</p>
 
 
   <div class="container_header">
@@ -136,13 +136,15 @@
       </div>
       <div class="div_publish">
         <a href="{% url 'my_site:create-communique' %}" class="link-block publice w-inline-block">
-            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="64" height="64" app="ikonik" class="ikonik-bj5xwk">
-            <g fill="none" fill-rule="evenodd" app="ikonik">
-            <path fill="currentColor" d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07A1.01 1.01 0 0 1 4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2h4.558ZM9 10a1 1 0 0 0-.993.883L8 11v6a1 1 0 0 0 1.993.117L10 17v-6a1 1 0 0 0-1-1Zm6 0a1 1 0 0 0-1 1v6a1 1 0 1 0 2 0v-6a1 1 0 0 0-1-1Zm-.72-6H9.72l-.333 1h5.226l-.334-1Z" app="ikonik" class="path-b281u"></path>
-            <path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01-.184-.092Z" app="ikonik"></path>
-          </g>
-        </svg>
-          <h3 class="heading-5">Publier un communiqué.</h3>
+          <svg width='40' height='40' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <g fill='#3c3e3e'>
+                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"></path>
+                    <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"></path>
+                    <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"></path>
+                </g>
+            </svg>
+
+          <h3 class="heading-5">Écrire un communiqué.</h3>
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse </p>
         </a>
       </div>
@@ -174,6 +176,20 @@
           </g>
         </svg>
           <h3 class="heading-5">Supprimer un Article</h3>
+          <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse </p>
+        </a>
+      </div>
+          <div class="div_publish">
+        <a href="{% url 'my_site:create-communique' %}" class="link-block publice w-inline-block">
+          <svg width='40' height='40' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <g fill='#3c3e3e'>
+                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"></path>
+                    <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"></path>
+                    <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"></path>
+                </g>
+            </svg>
+
+          <h3 class="heading-5">Écrire un communiqué.</h3>
           <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse </p>
         </a>
       </div>

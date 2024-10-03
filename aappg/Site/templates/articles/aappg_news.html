@@ -198,32 +198,33 @@
       </div>
     </div>
       <div class="communiquer-conteneur">
-     <h3 style="color:#c4c4c4;" class="heading-37">Derniers communiqués d'AAPPG</h3>
-    <div class="w-layout-blockcontainer container w-container">
-      {% if communique1 %}
-      <a id="w-node-b306b1e3-3fe8-423a-0d63-279d92165bf1-03d43ac9" href="{% url 'my_site:communique' id=communique1.id %}" class="lien-bloc w-inline-block">
-        <div class="title">{{communique1.titre}}</div>
-        <p class="paragraph">{{communique1.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
-      </a>
-      {% endif %}
-      {% if communique2 %}
-      <a href="{% url 'my_site:communique' id=communique2.id %}" class="lien-bloc w-inline-block">
-        <div class="title">{{communique2.titre}}</div>
-        <p class="paragraph">{{communique2.content|truncatewords:20}}<br/> <span class="read-more">Lire la suite</span></p>
-      </a>
-       {% endif %}
-      {% if communique3 %}
-      <a href="{% url 'my_site:communique' id=communique3.id %}" class="lien-bloc w-inline-block">
-        <div class="title">{{communique3.titre}}</div>
-        <p class="paragraph">{{communique3.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
-      </a>
-      {% endif %}
-      {% if communique4 %}
-      <a id="w-node-b877f026-8f3d-8be2-465d-5cf4fe3318f7-03d43ac9" href="{% url 'my_site:communique' id=communique4.id %}" class="lien-bloc w-inline-block">
-        <div class="title">{{communique4.titre}}</div>
-          <p class="paragraph">{{communique4.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
-      {% endif %}
-    </div>
+        <h3 style="color:#c4c4c4;" class="heading-37">Derniers communiqués d'AAPPG</h3>
+        <div class="w-layout-blockcontainer container w-container">
+          {% if communique1 %}
+          <a id="w-node-b306b1e3-3fe8-423a-0d63-279d92165bf1-03d43ac9" href="{% url 'my_site:communique' id=communique1.id %}" class="lien-bloc w-inline-block">
+            <div class="title">{{communique1.titre}}</div>
+            <p class="paragraph">{{communique1.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
+          </a>
+          {% endif %}
+          {% if communique2 %}
+          <a href="{% url 'my_site:communique' id=communique2.id %}" class="lien-bloc w-inline-block">
+            <div class="title">{{communique2.titre}}</div>
+            <p class="paragraph">{{communique2.content|truncatewords:20}}<br/> <span class="read-more">Lire la suite</span></p>
+          </a>
+           {% endif %}
+          {% if communique3 %}
+          <a href="{% url 'my_site:communique' id=communique3.id %}" class="lien-bloc w-inline-block">
+            <div class="title">{{communique3.titre}}</div>
+            <p class="paragraph">{{communique3.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
+          </a>
+          {% endif %}
+          {% if communique4 %}
+          <a id="w-node-b877f026-8f3d-8be2-465d-5cf4fe3318f7-03d43ac9" href="{% url 'my_site:communique' id=communique4.id %}" class="lien-bloc w-inline-block">
+            <div class="title">{{communique4.titre}}</div>
+              <p class="paragraph">{{communique4.content|truncatewords:20}}<br/>  <span class="read-more">Lire la suite</span></p>
+          {% endif %}
+          </a>
+        </div>
   </div>
   </section>
 

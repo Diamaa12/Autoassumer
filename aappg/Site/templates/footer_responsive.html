@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-container ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.footer-container ul li {
+    margin: 5px 0;
+}
+
+.footer-container ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-container ul li a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-container ul {
+        margin-bottom: 20px;
+    }
+}
+
+</style>
+<body>
+        <footer>
+        <div class="footer-container">
+            <ul>
+                <li>Accueil</li>
+                <li>À propos</li>
+                <li>Contact</li>
+            </ul>
+            <ul>
+                <li>Services</li>
+                <li>Portfolio</li>
+                <li>Blog</li>
+            </ul>
+            <ul>
+                <li><a href="https://www.google.com">Google</a></li>
+                <li><a href="https://www.facebook.com">Facebook</a></li>
+                <li><a href="https://www.twitter.com">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

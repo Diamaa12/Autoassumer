@@ -298,8 +298,7 @@ def aappg_admin_connexion(request):
                 if next_url:
                     return redirect(next_url)
                 else:
-                    template_name = 'aappg_admin/admin_page.html'
-                    return render(request, template_name=template_name, context=context)
+                    return redirect('my_site:admin-page')
 
             context['error'] = f'Le mot de passe est incorrect.'
             return render(request, template_name=template_name, context=context)
