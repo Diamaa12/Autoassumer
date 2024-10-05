@@ -16,14 +16,16 @@
     <link rel="stylesheet" href="{% static 'css/aappg_news/aappg_news_paginate.css'%}">
 <style>
    .communiquer-conteneur{
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  overflow:hidden;
-  border:1px solid;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    overflow:hidden;
 }
-
+    .communiquer-conteneur > .heading-37{
+       color:#16BEF0;
+       font-family: 'Inter', sans-serif;
+    }
      .video.w-video.w-embed{
         background:rgb(223, 222, 219);
         min-width:400px;
@@ -41,29 +43,40 @@
             margin-right: auto; /* Centrer horizontalement */
         }
         .lien-bloc {
-          background-color: #26336e;
+          background: linear-gradient(-45deg, #082153, #128df1);
           color:rgba(243, 245, 252, 0.7);
           flex-flow: column;
           width: 24%;
           display: flex;
           overflow: hidden;
           text-decoration:none;
-          border-radius:5px;
+          border-radius:8px;
           font-family:'Inter', sans-serif;
           padding:5px;
+          box-shadow:0px 0px 3px 2px #c4c4c4;
         }
 
         .title {
           text-align: left;
-          font-weight:600
+          font-weight:bold;
           font-size:16px;
+          font-family:'Montserrat', sans-serif;
+          color:white;
+          line-height:22px;
         }
 
         .paragraph {
+          color:white;
           text-align: left;
-          font-family:'Inter', sans-serif;
-          font-weight:400;
+          font-family:'Montserrat', sans-serif;
+          font-weight:500;
           font-size:12px;
+          line-height:20px;
+
+          padding:5px;
+          border-top:4px solid #16BEF0;
+          height:100%;
+          width:100%;
         }
 
         .container {
@@ -75,15 +88,25 @@
         .read-more{
             font-size:14px;
             font-weight:700;
+            color:#16BEF0;
         }
 
    @media screen and (max-width: 767px){
+         .communiquer-conteneur > .heading-37{
+                color:#16BEF0;
+                font-family: 'Inter', sans-serif;
+                max-width:90%;
+                font-size:16px;
+            }
 
         .lien-bloc {
           background-color:#26336e;
           color:white;
           border-radius: 4px;
-          width: 100%;
+          width: 1000%;
+          height:auto;
+          min-height:220px;
+          max-height:400px;
           padding: 6px;
           text-decoration: none;
           overflow: hidden;
@@ -198,7 +221,7 @@
       </div>
     </div>
       <div class="communiquer-conteneur">
-        <h3 style="color:#c4c4c4;" class="heading-37">Derniers communiqués d'AAPPG</h3>
+        <h3 class="heading-37">Derniers communiqués d'AAPPG</h3>
         <div class="w-layout-blockcontainer container w-container">
           {% if communique1 %}
           <a id="w-node-b306b1e3-3fe8-423a-0d63-279d92165bf1-03d43ac9" href="{% url 'my_site:communique' id=communique1.id %}" class="lien-bloc w-inline-block">

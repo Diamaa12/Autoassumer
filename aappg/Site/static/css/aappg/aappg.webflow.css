@@ -3859,6 +3859,7 @@
 
   .txt_logo {
     text-decoration: none;
+    font-size:12px;
   }
 
   .img_logo {
@@ -4373,6 +4374,8 @@
 
   .txt_logo {
     word-break: keep-all;
+    font-size:18px;
+    font-weight:600;
   }
 
   .img_logo {
@@ -4381,9 +4384,10 @@
 
   .lien_logo {
     z-index: 4;
-    margin-left: 40px;
+    margin-left: 0px;
     position: relative;
     bottom: 6px;
+    width:50%
   }
 
   .page_link {
@@ -4810,10 +4814,12 @@
     font-family: Inter Variablefont Slnt Wght, sans-serif;
   }
 
-  .heading-25, .txt_logo {
+  .heading-25{
     font-size: 14px;
   }
-
+  .txt_logo{
+    font-size:11px;
+  }
   .img_logo {
     width: 60px;
     height: 60px;
