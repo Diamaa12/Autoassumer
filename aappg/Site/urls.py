@@ -8,7 +8,7 @@ from .views import test, index, aappg_donate, aappg_actualites, aappg_le_mouveme
     aappg_articles_edit, \
     articles_poster, aappg_news, article_detail, modify_article, custom_permission_denied_view, article_list, \
     delete_articles, aappg_valeurs, aappg_chartes, aappg_reglement, pagination_test, email_verification_sent, \
-    email_verification, test_form, email_verified_success, create_communique, communique_detail
+    email_verification, test_form, email_verified_success, create_communique, communique_detail, trigger_error
 
 app_name = 'my_site'
 urlpatterns = [
@@ -51,4 +51,7 @@ urlpatterns = [
     path('articles-list/', article_list, name='articles_list'),
     path('articles-delete/<int:post_id>/', delete_articles, name='delete_article'),
     path('403/', custom_permission_denied_view, name='403'),
+
+    path('sentry-debug/', trigger_error),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

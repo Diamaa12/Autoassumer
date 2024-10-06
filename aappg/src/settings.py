@@ -11,14 +11,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from email.policy import default
 from pathlib import Path
+
+from django.conf.global_settings import EMAIL_PORT, EMAIL_USE_SSL
 from django.conf.urls import handler403
 
 #importation du module decouple pour pouvoir integrer le fichier .aappgenv
-from decouple import config
+from decouple import Config, RepositoryEnv
+
+#Importation du module Sentry
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Spécifiez le fichier .aappgenv
+config = Config(RepositoryEnv('.aappgenv'))
 #Secret key configuration here
 SECRET_KEY = config('AAPPG_SECRET_KEY', default='django-insecure-!@#%&*')
 
@@ -28,7 +36,7 @@ SECRET_KEY = config('AAPPG_SECRET_KEY', default='django-insecure-!@#%&*')
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('AAPPG_DEBUG', default=True, cast=bool)
+DEBUG = config('AAPPG_DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.110']
 
@@ -122,12 +130,31 @@ USE_TZ = True
 #Systéme de gestion des sessions django
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_NAME = 'Site_sessionid'
-#SESSION_COOKIE_AGE = 60
+SESSION_COOKIE_AGE = 86400
 SESSION_COOKIE_HTTPONLY = True
 #Pour prolonger le temps si l'utilisateur reste actif sur le site.
 SESSION_SAVE_EVERY_REQUEST = True
 
+#Systéme de gestion de mails
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
 
+#Insertion de gestion d'erreur Sentry
+sentry_sdk.init(
+    dsn=config('SENTRY_URL', default=''),
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

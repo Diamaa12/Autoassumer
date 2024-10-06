@@ -5,6 +5,7 @@ from lib2to3.fixes.fix_input import context
 from tempfile import template
 from urllib.parse import urlencode
 
+import sentry_sdk
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -248,6 +249,8 @@ def email_verification(request, token):
         user.email_verified = True
 
         user.save()  # Sauvegarder les modifications
+
+        sentry_sdk.capture_message(f"{user.user} vient de crée son compte sur aapp-guinee.org", level="info")
         context['success'] = "Votre email a été vérifié avec succès. Vous pouvez maintenant vous connecter."
         #return redirect('my_site:success_email_verification')
 
@@ -434,6 +437,7 @@ def aappg_articles_edit(request):
             article.image = form.cleaned_data['image']
             article.author = request.user
             article.save()
+            sentry_sdk.capture_message(f"{article.author} vient de publier une article", level="info")
             print('formulaire poster avec succes')
             pk = 1
             for f in form:
@@ -549,6 +553,7 @@ def modify_article(request, pk):
             form.fields['image'].required = False
         if form.is_valid():
             form.save()
+            sentry_sdk.capture_message(f"{request.user} vient de modifier un article", level="info")
             print('formulaire poster avec succes')
             return redirect('my_site:news')
     else:
@@ -568,6 +573,8 @@ def delete_articles(request, post_id):
 
     if request.method == 'POST':
         article.delete()
+
+        sentry_sdk.capture_message(f"{request.user} vient de supprimer une article", level="info")
         messages.success(request, "Blog post deleted successfully")
         return redirect('my_site:articles_list')  # Change 'blogpost_list' to the name of your list view
     context['article'] = article
@@ -602,6 +609,7 @@ def create_communique(request):
             communique = form.save(commit=False)  # Ne pas encore enregistrer en base
             communique.author = request.user  # Attribuer l'utilisateur connecté comme auteur
             communique.save()  # Enregistrer maintenant avec l'auteur
+            sentry_sdk.capture_message(f"{request.user} vient de publier un communiqué.", level="info")
             print('Communiquer publier avec success')
             return redirect('my_site:news')  # Rediriger vers une page de succès après l'enregistrement
         else:
@@ -612,3 +620,8 @@ def create_communique(request):
 
     context['form'] = form
     return render(request, template_name, context)
+
+#Tester les erreurs de Centry
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return render(request, 'errors/505.html', context={'division_by_zero': division_by_zero})
