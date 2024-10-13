@@ -250,7 +250,7 @@ def email_verification(request, token):
 
         user.save()  # Sauvegarder les modifications
 
-        sentry_sdk.capture_message(f"{user.user} vient de crée son compte sur aapp-guinee.org", level="info")
+        sentry_sdk.capture_message(f"{user.user} vient de crée son compte sur aapp-guinee.org", level="error")
         context['success'] = "Votre email a été vérifié avec succès. Vous pouvez maintenant vous connecter."
         #return redirect('my_site:success_email_verification')
 
@@ -437,7 +437,7 @@ def aappg_articles_edit(request):
             article.image = form.cleaned_data['image']
             article.author = request.user
             article.save()
-            sentry_sdk.capture_message(f"{article.author} vient de publier une article", level="info")
+            sentry_sdk.capture_message(f"{article.author} vient de publier une article", level="error")
             print('formulaire poster avec succes')
             pk = 1
             for f in form:
@@ -553,7 +553,7 @@ def modify_article(request, pk):
             form.fields['image'].required = False
         if form.is_valid():
             form.save()
-            sentry_sdk.capture_message(f"{request.user} vient de modifier un article", level="info")
+            sentry_sdk.capture_message(f"{request.user} vient de modifier un article", level="error")
             print('formulaire poster avec succes')
             return redirect('my_site:news')
     else:
@@ -609,7 +609,7 @@ def create_communique(request):
             communique = form.save(commit=False)  # Ne pas encore enregistrer en base
             communique.author = request.user  # Attribuer l'utilisateur connecté comme auteur
             communique.save()  # Enregistrer maintenant avec l'auteur
-            sentry_sdk.capture_message(f"{request.user} vient de publier un communiqué.", level="info")
+            sentry_sdk.capture_message(f"{request.user} vient de publier un communiqué.", level="error")
             print('Communiquer publier avec success')
             return redirect('my_site:news')  # Rediriger vers une page de succès après l'enregistrement
         else:

@@ -145,7 +145,7 @@ EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
 
 #Insertion de gestion d'erreur Sentry
 sentry_sdk.init(
-    dsn=config('SENTRY_URL', default=''),
+    dsn=config('SENTRY_DSN'),
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for tracing.
     integrations=[DjangoIntegration()],
@@ -154,7 +154,10 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
+    send_default_pii=True,
+    environment="local"
 )
+sentry_sdk.set_tag("local", "aappg")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
